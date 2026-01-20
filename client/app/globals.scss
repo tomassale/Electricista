@@ -1,0 +1,297 @@
+
+
+@mixin titles{
+  text-align: center;
+  font-size: 2.5rem;
+  padding-top: 2%;
+  color: white;
+}
+
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes slideInText {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+*{
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
+  h1{
+    @include titles();
+  }
+  margin:0;
+  padding: 0;
+}
+
+
+body{
+  height: 100%;
+  //Components
+  .header{
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+
+    nav{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 17rem;
+      height: 7.5vh;
+      a{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+      }
+      a:hover{
+        transform: translateY(-1px);
+      }
+      a:focus-visible{
+        outline: 3px solid rgba(96, 214, 105, 0.85);
+        outline-offset: 3px;
+      }
+    }
+  }
+  .footer{
+    position: fixed;
+    bottom: 0;
+    font-size: 1.5rem;
+    padding: 1vh;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
+  .emergency {
+    display: flex;
+    position: fixed;
+    right: 3vw;
+    bottom: 7vh;
+    a{
+      padding: 1rem;
+    }
+  }
+  //Páge
+  .nosotros{
+    display: flex;
+    color: white;
+    height: 100vh;
+    background: url('/img/background/backNos.png') center / cover no-repeat;
+    overflow: hidden;
+    .texto{
+      width: 50vw;
+      p{
+        height: 10rem;
+        width: 49rem;
+        font-size: 2.3rem;
+        text-align: justify;
+        line-height: 1.5;
+        margin: 12rem 10rem 14rem 10rem;
+      }
+      .botones{
+        margin-left: 17.5%;
+        a{
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          height: 4.5rem;
+          width: 17rem;
+          border-radius: 5px;
+          margin-left: 10%;
+          margin-top: 6rem;
+          font-size: 30px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          color: white;
+          text-shadow:
+            -1px -1px 0 #000,  
+             1px -1px 0 #000,
+            -1px  1px 0 #000,
+             1px  1px 0 #000,
+             0px  2px 2px #000;
+        }
+      }
+    }
+    .slides {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding-right: 18rem;
+      position: relative; 
+      width: 50vw;
+      
+      .slides-arrow {
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 10rem;
+        cursor: pointer;
+        padding-block: 18rem;
+        padding-inline: 3rem;
+        transition: transform 0.2s;
+        font-family: monospace;
+        
+        &:hover { transform: scale(1.1); }
+      }
+
+      .slides-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 1.2rem;
+        max-width: 500px;
+      }
+
+      .slides-title {
+        color: white;
+        font-size: 2.4em;
+        font-weight: 700;
+
+        border: 2px solid #FFD700; 
+        width: 500px;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+      }
+
+      .slides-text {
+        color: white;
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 1.4;
+        padding-inline: 10px;
+        margin-top: 2rem;
+        min-height: 500px; 
+      }
+
+      .slides-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 0 auto;
+        width: 16rem;
+        height: 5rem;
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: #FFD700;
+        background-color: #000;
+        border: 2px solid #5fb4ff; 
+        border-radius: 5px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #daff3627;
+        }
+      }
+      
+      .anim-text {
+        display: inline-block;
+        animation: slideInText 0.5s ease-out forwards;
+      }
+    }
+  }
+  .servicios{
+    height: 88.6vh;
+    background: url('/img/background/backSer.png') center / cover no-repeat;
+  }
+  .opiniones{
+    height: 88.6vh;
+    background: url('/img/background/backOpi.png') center / cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+
+    .carousel{
+      display: flex;
+      gap: 2rem;
+      margin-top: 10rem ;
+      overflow-x: hidden;
+      width: max-content;
+      animation: scroll-infinite 40s linear infinite;
+      
+      &:hover{
+        animation-play-state: paused;
+      }
+
+      .opinion-item{
+        min-width: 350px;
+        max-width: 350px;
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        color: #333;
+        flex-shrink: 0;
+        position: relative;
+
+        
+        .opinion-text{
+          font-size: 1.1rem;
+          line-height: 1.6;
+          flex-grow: 1;
+        }
+
+        .opinion-person{
+          font-size: 1rem;
+          font-weight: 600;
+          color: #9b9b9b;
+          margin-top: auto;
+        }
+        .opinion-rating{
+          font-size: 1.5rem;
+          display: flex;
+          gap: 0.25rem;
+          align-items: center;
+          justify-content: center;
+          margin-top: auto;
+          margin-bottom: 0.5rem;
+
+          .star-filled{
+            color: #000;
+            font-weight: 900;
+          }
+
+          .star-empty{
+            color: #9b9b9b;
+            font-weight: 900;
+          }
+        }
+      }
+    }
+  }
+
+  .cobertura{
+    height: 88.6vh;
+    background: url('/img/background/backCob.png') center / cover no-repeat;
+  }
+}

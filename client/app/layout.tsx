@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.scss";
+import { Inter } from 'next/font/google'
 
 export const metadata: Metadata = {
-  title: "Electricista servicios y Urgencias 24hs",
+  title: "Electricista",
   description: "Página electricista",
   keywords: ["Electricista", "Zona Oeste"],
   icons: {
     icon: "/favicon.ico"
   }
 };
+
+const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
@@ -18,7 +21,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className={`${inter.className}`}>
         {children}
       </body>
     </html>
