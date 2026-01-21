@@ -1,6 +1,7 @@
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Emergency from '../components/Emergency';
+import Header from '../_components/Header'
+import Footer from '../_components/Footer'
+import Emergency from '../_components/Emergency';
+
 
 export default function RootLayout({
   children,

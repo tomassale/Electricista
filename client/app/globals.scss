@@ -1,10 +1,22 @@
-
-
 @mixin titles{
   text-align: center;
   font-size: 2.5rem;
   padding-top: 2%;
   color: white;
+}
+
+@mixin turn{
+  @for $i from 1 through 20 {
+    :nth-child(#{$i}) {
+      animation-delay: $i * 0.2s;
+    }
+  }
+}
+
+@mixin fade($fade, $delay){
+  opacity: 0;
+  animation: fade-#{$fade} 0.6s forwards;
+  animation-delay: $delay;
 }
 
 @keyframes scroll-infinite {
@@ -15,7 +27,6 @@
     transform: translateX(-50%);
   }
 }
-
 @keyframes slideInText {
   0% {
     opacity: 0;
@@ -26,17 +37,59 @@
     transform: translateX(0);
   }
 }
+@keyframes fade-left{
+  0%{
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fade-right{
+  0%{
+    opacity: 0;
+    transform: translateX(10%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fade-up{
+  0%{
+    opacity: 0;
+    transform: translateY(40%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade-down{
+  0%{
+    opacity: 0;
+    transform: translateY(-40%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 *{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   a{
     text-decoration: none;
     color: inherit;
+    user-select: none;
   }
   h1{
     @include titles();
   }
-  margin:0;
-  padding: 0;
 }
 
 
@@ -94,13 +147,12 @@ body{
   .nosotros{
     display: flex;
     color: white;
-    height: 100vh;
-    background: url('/img/background/backNos.png') center / cover no-repeat;
-    overflow: hidden;
+    
     .texto{
       width: 50vw;
       p{
-        height: 10rem;
+        @include fade(left, 0.2s);
+        height: max-content;
         width: 49rem;
         font-size: 2.3rem;
         text-align: justify;
@@ -109,6 +161,7 @@ body{
       }
       .botones{
         margin-left: 17.5%;
+        @include fade(up, 1.3s);
         a{
           display: inline-flex;
           align-items: center;
@@ -136,10 +189,12 @@ body{
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
-      padding-right: 18rem;
-      position: relative; 
-      width: 50vw;
+      gap: 0.5rem;
+      padding-inline: 2rem;
+      margin-top: 3%;
+      position: relative;
+      width: 40vw;
+      @include fade(right, 0.7s);
       
       .slides-arrow {
         background: transparent;
@@ -147,8 +202,9 @@ body{
         color: white;
         font-size: 10rem;
         cursor: pointer;
-        padding-block: 18rem;
-        padding-inline: 3rem;
+        padding: 18rem 4rem 18rem 1rem;
+        margin-inline-start: 5%;
+        margin-inline-end: 5%;
         transition: transform 0.2s;
         font-family: monospace;
         
@@ -160,7 +216,6 @@ body{
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-        gap: 1.2rem;
         max-width: 500px;
       }
 
@@ -183,7 +238,7 @@ body{
         font-size: 2rem;
         font-weight: 400;
         line-height: 1.4;
-        padding-inline: 10px;
+        padding-inline: 6%;
         margin-top: 2rem;
         min-height: 500px; 
       }
@@ -216,26 +271,111 @@ body{
       }
     }
   }
-  .servicios{
-    height: 88.6vh;
-    background: url('/img/background/backSer.png') center / cover no-repeat;
+  .servicios {
+    h1 {
+      margin-bottom: 3rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 16rem);
+      gap: 1.5rem;
+      justify-content: center;
+  
+      .card {
+        @include fade(up, 0.6s);
+        width: 13vw;
+        height: 28vh;
+        border-radius: 16px;
+        position: relative; /* Necesario para los elementos absolutos */
+        overflow: hidden;   /* Para que nada se salga del borde redondeado */
+  
+        &:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+        }
+  
+        /* 1. Estilos del TEXTO (Descripción) */
+        /* Eliminé el wrapper .hoverClass innecesario para simplificar */
+        .descripcion {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: 2; /* Importante: Encima del fondo oscuro */
+          text-align: center;
+          padding: 1rem;
+        }
+  
+        .title {
+          position: absolute;
+          bottom: 10px; /* Corregido: faltaba 'px' */
+          left: 20px;   /* Corregido: faltaba 'px' */
+          width: 80%;
+          height: 20%;
+          border-radius: 10%;
+  
+          display: flex;
+          align-items: center;
+          justify-content: center;
+  
+          background: rgba(60, 60, 60, 0.384);
+          --tw-backdrop-saturate: saturate(150%);
+          -webkit-backdrop-filter: blur(10px);
+          
+          z-index: 2; 
+  
+          mask-image: radial-gradient(circle, black 100%);
+          -webkit-mask-image: radial-gradient(circle, black 100%);
+  
+          color: white;
+          font-size: 1rem;
+          font-weight: 500;
+          letter-spacing: 0.5px;
+          text-align: center;
+        }
+  
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.6);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: 1;
+        }
+
+        &:hover {
+          .descripcion {
+            opacity: 1;
+          }
+          &::after {
+            opacity: 1;
+          }
+        }
+  
+      }
+      @include turn();
+    }
   }
   .opiniones{
-    height: 88.6vh;
-    background: url('/img/background/backOpi.png') center / cover no-repeat;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     position: relative;
 
     .carousel{
       display: flex;
       gap: 2rem;
       margin-top: 10rem ;
-      overflow-x: hidden;
       width: max-content;
-      animation: scroll-infinite 40s linear infinite;
       
+      animation:
+        scroll-infinite 40s linear infinite;
       &:hover{
         animation-play-state: paused;
       }
@@ -291,7 +431,42 @@ body{
   }
 
   .cobertura{
-    height: 88.6vh;
-    background: url('/img/background/backCob.png') center / cover no-repeat;
+    height: 100vh;
+    width: 100vw;
+    h1{
+      margin-bottom: 5%;
+    }
+    div{
+      display: flex;
+      height: 50vh;
+      justify-content: center;
+      align-items: center;
+      .map{
+        width: 50%;
+        @include fade(left, 0.3s);
+      }
+      .zonas{
+        flex-wrap: wrap;
+        width: 40%;
+        height: 95%;
+        .coverageitem{
+          @include fade(up, 0.5s);
+          color: black;
+          width: 45%;
+          height: 7vh;
+          margin-left: 1%;
+          background-color: #EEEEEE;
+          p{
+            text-align: center;
+          }
+        }
+        @include turn();
+        .coverageitem:hover{
+          background-color: black;
+          color: #FFD700;
+          
+        }
+      }
+    }
   }
 }

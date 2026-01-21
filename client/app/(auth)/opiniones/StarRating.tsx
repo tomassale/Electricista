@@ -22,3 +22,4 @@ function StarRating({ rating, id }: StarRatingProps) {
 
 export default memo(StarRating)
 
+

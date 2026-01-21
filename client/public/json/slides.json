@@ -1,30 +1,30 @@
 [
   {
     "id": 0,
-    "title": "Electricista Matriculado",
-    "text": "Electricista Matriculado con visión técnica avanzada. Combinando experiencia técnica en obra con una capacidad de resolución de problemas, garantizando resultados impecables en cada conexión.",
-    "button": "Llamar",
-    "link": "tel:+541159638765"
-  },
-  {
-    "id": 1,
     "title": "Servicios ofrecidos",
     "text": "Instalaciones eléctricas de vanguardia: diagnóstico técnico, precisión operativa y máxima seguridad. Soluciones normalizadas para hogares y comercios. Consultá por nuestros servicios ofrecidos.",
     "button": "Ver Servicios",
     "link": "/servicios"
   },
   {
-    "id": 2,
+    "id": 1,
     "title": "Opiniones de clientes",
     "text": "Excelencia técnica avalada por clientes: destacan la precisión y la lógica aplicada en cada reparación. Trabajo prolijo, puntual y resolutivo. Descubrí por qué confían en nuestro criterio profesional.",
     "button": "Ver Opiniones",
     "link": "/opiniones"
   },
   {
-    "id": 3,
+    "id": 2,
     "title": "Zonas de cobertura",
     "text": "Cobertura integral en diversos partidos: brindamos una respuesta inmediata y eficiente con proximidad técnica garantizada. Consultá ahora nuestro radio de atención sin compromiso.",
     "button": "Ver Cobertura",
     "link": "/cobertura"
+  },
+  {
+    "id": 3,
+    "title": "Electricista Matriculado",
+    "text": "Electricista Matriculado con visión técnica avanzada. Combinando experiencia técnica en obra con una capacidad de resolución de problemas, garantizando resultados impecables en cada conexión.",
+    "button": "Llamar",
+    "link": "tel:+541159638765"
   }
 ]

@@ -1,0 +1,27 @@
+[
+  {
+    "id": 0,
+    "page": "nosotros",
+    "src": "/img/background/backNos.png",
+    "alt": "Fondo sección Nosotros",
+    "priority": true
+  },
+  {
+    "id": 1,
+    "page": "servicios",
+    "src": "/img/background/backSer.png",
+    "alt": "Fondo sección Servicios"
+  },
+  {
+    "id": 2,
+    "page": "opiniones",
+    "src": "/img/background/backOpi.png",
+    "alt": "Fondo sección Opiniones"
+  },
+  {
+    "id": 3,
+    "page": "cobertura",
+    "src": "/img/background/backCob.png",
+    "alt": "Fondo sección Cobertura"
+  }
+]

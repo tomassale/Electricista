@@ -1,8 +1,12 @@
-import Carousel from "./components/Slides";
+import Background from "./_components/Background";
+import Carousel from "./_components/Slides";
+import Image from 'next/image'
 
 export default function Page() {
+
+
   return (
-    <div className={`nosotros`}>
+    <div className='nosotros'>
       <div className='texto'>
         <p>
           <strong>Profesional matriculado con años de experiencia:</strong> responsable, rápido y eficiente. 
@@ -25,6 +29,9 @@ export default function Page() {
         </div>
       </div>
       <Carousel/>
+      <Background
+        page="nosotros"
+      />
     </div>
   )
 }

@@ -6,5 +6,7 @@
   { "id": 4, "city": "Merlo" },
   { "id": 5, "city": "Tres de Febrero" },
   { "id": 6, "city": "Lomas de Zamora" },
-  { "id": 7, "city": "Ituzaingó"  }
+  { "id": 7, "city": "Ituzaingó"  },
+  { "id": 8, "city": "Hurlingham"},
+  { "id": 9, "city": "Marcos Paz"}
 ]
