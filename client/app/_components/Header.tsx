@@ -8,7 +8,7 @@ export default function Header() {
         <Link href={'/'} draggable='false'>Nosotros</Link>
         <Link href={'/servicios'} draggable='false'>Servicios</Link>
         <Link href={'/'} draggable='false'>
-          <Image src={'/img/icon/Icono.png'} width={110} height={80} alt="Icono página"/>
+          <Image src={'/img/icon/Icono.png'} width={110} height={60} alt="Icono página"/>
         </Link>
         <Link href={'/opiniones'} draggable='false'>Opiniones</Link>
         <Link href={'/cobertura'} draggable='false'>Cobertura</Link>

@@ -5,7 +5,8 @@ export default function Opiniones() {
   return (
     <div className='opiniones'>
       <h1>Opiniones</h1>
-      <Carousel/>
+      <Carousel classN='carousel carouselLeft'/>
+      <Carousel classN='carousel carouselRight'/>  
       <Background page='opiniones'/>
     </div>
   )

@@ -1,4 +1,3 @@
-import Link from "next/link"
 import LinkSlides from "./LinkSlides"
 
 // Definimos la estructura de tus datos (opcional pero recomendado)
