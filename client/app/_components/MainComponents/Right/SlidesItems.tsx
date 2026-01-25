@@ -1,6 +1,5 @@
 import LinkSlides from "./LinkSlides"
 
-// Definimos la estructura de tus datos (opcional pero recomendado)
 interface SlideData {
   title: string
   text: string

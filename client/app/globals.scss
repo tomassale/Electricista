@@ -296,11 +296,6 @@ body{
         position: relative;
         overflow: hidden;
   
-        &:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
-        }
-  
         .descripcion {
           position: absolute;
           inset: 0;
@@ -322,20 +317,15 @@ body{
           width: 80%;
           height: 20%;
           border-radius: 10%;
-  
           display: flex;
           align-items: center;
           justify-content: center;
-  
           background: rgba(60, 60, 60, 0.384);
           --tw-backdrop-saturate: saturate(150%);
           -webkit-backdrop-filter: blur(10px);
-          
           z-index: 2; 
-  
           mask-image: radial-gradient(circle, black 100%);
           -webkit-mask-image: radial-gradient(circle, black 100%);
-  
           color: white;
           font-size: 1rem;
           font-weight: 500;
@@ -354,6 +344,8 @@ body{
         }
 
         &:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
           .descripcion {
             opacity: 1;
           }
@@ -476,14 +468,21 @@ body{
 /* Mobile */
 @media (max-width: 767px){
   body{
+    min-height: 100dvh;    
+    h1{
+      margin-top: 2%;
+    }
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     .header{
       font-size: 0.8rem;
       nav{
-        gap: 0.7rem;
+        gap: 1.7rem;
         a{
           letter-spacing: 0;
+        }
+        .headerLogo{
+          display: none;
         }
       }
     }
@@ -491,65 +490,63 @@ body{
       bottom: 3vh;
         a{ padding: 0.4rem}
     }
-    @media (max-width: 768px) {
-      .nosotros {
-        flex-direction: column-reverse;
-        height: auto;
+    .nosotros {
+      flex-direction: column-reverse;
+      height: auto;
+      width: 100%;
+      padding: 2rem 0;
+      .slides {
         width: 100%;
-        padding: 2rem 0;
-        .slides {
-          width: 100%;
-          padding: 0;
-          margin-top: 1rem;
-          .slides-arrow {
-            font-size: 2rem;
-            padding: 5rem 0.7rem;
-            margin: 0;
-          }
-          .slides-card {
-            max-width: 100%;
-            padding: 0 1rem;
-            align-items: center;
-          }
-          .slides-title {
-            width: 90%;
-            height: auto;
-            padding: 1rem;
-            font-size: 1.5rem;
-            text-align: center;
-          }
-          .slides-text {
-            font-size: 1.1rem;
-            min-height: auto;
-            margin-top: 3rem;
-            text-align: center;
-            padding-bottom: 2rem;
-          }
-          .slides-button { 
-            width: 55%;
-            height: 3.5rem;
-            margin-top: 10%;
-            font-weight: 400;
-          }
-        }
-
-        .texto {
-          width: 100%;
+        padding: 0;
+        margin-top: 1rem;
+        .slides-arrow {
+          font-size: 2rem;
+          padding: 5rem 0.7rem;
           margin: 0;
-          p { display: none }
-          .botones {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            gap: 1rem;
-            margin-top: 30%;
-            margin-left: 0;
-            a {
-              margin: 0;
-              width: 40%;
-              height: 3rem;
-              font-size: 1.5rem;
-            }
+        }
+        .slides-card {
+          max-width: 100%;
+          padding: 0 1rem;
+          align-items: center;
+        }
+        .slides-title {
+          width: 90%;
+          height: auto;
+          padding: 1rem;
+          font-size: 1.5rem;
+          text-align: center;
+        }
+        .slides-text {
+          font-size: 1.1rem;
+          min-height: auto;
+          margin-top: 3rem;
+          text-align: center;
+          padding-bottom: 2rem;
+        }
+        .slides-button { 
+          width: 55%;
+          height: 3.5rem;
+          margin-top: 10%;
+          font-weight: 400;
+        }
+      }
+
+      .texto {
+        width: 100%;
+        margin: 0;
+        p { display: none }
+        .botones {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          gap: 1rem;
+          margin-top: 30%;
+          margin-left: 0;
+          a {
+            margin: 0;
+            width: 40%;
+            height: 3rem;
+            font-size: 1.5rem;
           }
         }
       }
@@ -586,7 +583,7 @@ body{
         &.carouselRight{ animation: scroll-infinite-right 60s linear infinite }
         .opinion-item{
           width: 200px;
-          height: 150px;
+          height: 140px;
           .opinion-text{
             font-size: 0.8rem;
           }
@@ -601,7 +598,7 @@ body{
     }
     .cobertura{
       h1{
-        margin: 1rem 0;
+        margin-bottom: 5%;
       }
       div{
         flex-direction: column-reverse;

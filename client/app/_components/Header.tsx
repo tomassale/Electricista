@@ -7,7 +7,7 @@ export default function Header() {
       <nav>
         <Link href={'/'} draggable='false'>Nosotros</Link>
         <Link href={'/servicios'} draggable='false'>Servicios</Link>
-        <Link href={'/'} draggable='false'>
+        <Link href={'/'} draggable='false' className="headerLogo">
           <Image src={'/img/icon/Icono.png'} width={110} height={60} alt="Icono página"/>
         </Link>
         <Link href={'/opiniones'} draggable='false'>Opiniones</Link>
