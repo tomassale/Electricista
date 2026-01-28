@@ -1,7 +1,7 @@
 import background from '@/public/json/backgrounds.json'
 import Image from 'next/image'
 
-export default function Background({page}: {page:string}) {
+export default function Background({page}: Readonly<{page:string}>) {
 
   const bgImage = background.find(
     (bg) => bg.page === page

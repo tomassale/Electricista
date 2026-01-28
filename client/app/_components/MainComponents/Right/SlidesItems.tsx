@@ -8,13 +8,13 @@ interface SlideData {
 }
 
 interface SlidesItemsProps {
-  readonly slide: SlideData
-  readonly onNext: () => void
-  readonly onPrev: () => void
-  readonly currentIndex: number
+  slide: SlideData
+  onNext: () => void
+  onPrev: () => void
+  currentIndex: number
 }
 
-export default function SlidesItems({ slide, onNext, onPrev, currentIndex }: SlidesItemsProps) {
+export default function SlidesItems({ slide, onNext, onPrev, currentIndex }: Readonly<SlidesItemsProps>) {
   return (
     <>
       <button 

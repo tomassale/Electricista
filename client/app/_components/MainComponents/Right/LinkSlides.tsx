@@ -1,14 +1,14 @@
 import Link from 'next/link'
 
 interface HeaderProps{
-  readonly link: string,
-  readonly index: number,
-  readonly title: string,
-  readonly text: string,
-  readonly button: string
+  link: string,
+  index: number,
+  title: string,
+  text: string,
+  button: string
 }
 
-export default function LinkSlides({link, index, title, text, button} : HeaderProps) {
+export default function LinkSlides({link, index, title, text, button} : Readonly<HeaderProps>) {
   return (
     <Link href={link} draggable='false'>
       <h2 className="slides-title">

@@ -1,8 +1,8 @@
 import { memo } from 'react'
 
 interface StarRatingProps {
-  rating: number
-  id: number
+  readonly rating: number
+  readonly id: number
 }
 
 function StarRating({ rating, id }: StarRatingProps) {

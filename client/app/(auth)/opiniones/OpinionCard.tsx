@@ -13,7 +13,7 @@ interface OpinionCardProps {
   prefix?: string
 }
 
-function OpinionCard({ opinion, prefix = 'first' }: OpinionCardProps) {
+function OpinionCard({ opinion, prefix = 'first' }: Readonly<OpinionCardProps>) {
   return (
     <div key={`${prefix}-${opinion.id}`} className="opinion-item">
       <p className="opinion-text">

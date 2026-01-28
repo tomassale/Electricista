@@ -172,7 +172,6 @@ body{
           width: 17rem;
           border-radius: 5px;
           margin-left: 10%;
-          margin-top: 6rem;
           font-size: 30px;
           font-weight: 700;
           letter-spacing: 0.5px;
@@ -189,30 +188,21 @@ body{
     .slides {
       flex: 1;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding-inline: 2rem;
+      gap: 2rem;
       margin-top: 3%;
-      position: relative;
-      width: 40vw;
       @include fade(right, 0.7s);
       
       .slides-arrow {
         background: transparent;
         border: none;
         color: white;
-        font-size: 10rem;
+        font-size: 6rem;
         cursor: pointer;
-        padding: 18rem 4rem;
-        margin-inline-start: 5%;
-        margin-inline-end: 5%;
+        padding: 16rem 5rem;
         transition: transform 0.2s;
-        font-family: monospace;
         display: flex;
         justify-content: center;
-        align-items: center;
-        align-self: center;
+        flex-shrink: 0;
         
         &:hover { transform: scale(1.1); }
       }
@@ -220,16 +210,15 @@ body{
       .slides-card {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
-        max-width: 500px;
       }
 
       .slides-title {
         color: white;
         font-size: 2.4em;
         font-weight: 700;
-
+        margin: auto;
         border: 2px solid #FFD700; 
         width: 500px;
         height: 180px;
@@ -244,16 +233,16 @@ body{
         font-size: 2rem;
         font-weight: 400;
         line-height: 1.4;
-        padding-inline: 6%;
-        margin-top: 2rem;
-        min-height: 500px;
+        width: 100%;
+        margin-top: 2.5rem;
+        min-height: 300px;
       }
 
       .slides-button {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 0 auto;
+        margin: 15% auto 0 auto;
         width: 16rem;
         height: 5rem;
         font-size: 1.7rem;
@@ -278,16 +267,14 @@ body{
     }
   }
   .servicios {
-    h1 {
-      margin-bottom: 2rem;
-    }
     .cards {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       width: 75%;
       margin: 0 auto;
-      justify-content: center;
-      gap: 2%;
+      justify-items: center;
+      align-items: center;
+      margin-top: 2%;
       .card {
         @include fade(up, 0.6s);
         width: 13vw;
@@ -295,6 +282,7 @@ body{
         border-radius: 16px;
         position: relative;
         overflow: hidden;
+        margin-top: 5%;
   
         .descripcion {
           position: absolute;
@@ -313,7 +301,8 @@ body{
         .title {
           position: absolute;
           bottom: 10px;
-          left: 20px;
+          left: 50%;
+          transform: translateX(-50%);
           width: 80%;
           height: 20%;
           border-radius: 10%;
@@ -321,7 +310,6 @@ body{
           align-items: center;
           justify-content: center;
           background: rgba(60, 60, 60, 0.384);
-          --tw-backdrop-saturate: saturate(150%);
           -webkit-backdrop-filter: blur(10px);
           z-index: 2; 
           mask-image: radial-gradient(circle, black 100%);
@@ -364,7 +352,7 @@ body{
     .carousel{
       display: flex;
       gap: 2rem;
-      margin-top: 10rem;
+      margin-top: 5rem;
       width: max-content;
 
       &.carouselLeft{ animation: scroll-infinite-left 40s linear infinite }
@@ -375,7 +363,6 @@ body{
       }
 
       .opinion-item{
-        max-width: 350px;
         max-width: 350px;
         background: white;
         border-radius: 16px;
@@ -465,7 +452,7 @@ body{
   }
 }
 
-/* Mobile */
+/* Mobile*/
 @media (max-width: 767px){
   body{
     min-height: 100dvh;    
@@ -476,6 +463,7 @@ body{
     user-select: none;
     .header{
       font-size: 0.8rem;
+      width: auto;
       nav{
         gap: 1.7rem;
         a{
@@ -496,29 +484,28 @@ body{
       width: 100%;
       padding: 2rem 0;
       .slides {
+        gap: 1rem;
         width: 100%;
         padding: 0;
         margin-top: 1rem;
         .slides-arrow {
           font-size: 2rem;
-          padding: 5rem 0.7rem;
+          padding: 10rem 0.7rem;
           margin: 0;
         }
         .slides-card {
           max-width: 100%;
-          padding: 0 1rem;
           align-items: center;
         }
         .slides-title {
-          width: 90%;
+          width: 80%;
           height: auto;
           padding: 1rem;
-          font-size: 1.5rem;
-          text-align: center;
+          font-size: 1.3rem;
         }
         .slides-text {
           font-size: 1.1rem;
-          min-height: auto;
+          min-height: 120px;
           margin-top: 3rem;
           text-align: center;
           padding-bottom: 2rem;
@@ -527,7 +514,8 @@ body{
           width: 55%;
           height: 3.5rem;
           margin-top: 10%;
-          font-weight: 400;
+          font-weight: 600;
+          font-size: 1.1rem;
         }
       }
 
@@ -556,34 +544,39 @@ body{
         display: flex;
         flex-wrap: wrap;      
         justify-content: center;
-        
         width: 90%;
-        margin: 10% auto 0;
+        margin: 5% auto 0;
         gap: 1rem;
     
         .card {
           height: 18vh;
-          width: 24vw;
+          width: 25vw;
           flex-shrink: 0;
+          margin-top: 1%;
           .descripcion{
             font-size: .7rem;
           }
           .title{
-            font-size: .5rem;
+            font-size: .65rem;
+            height: 25%;
             justify-content: center;
-            ;
+          }
+          &:hover{
+            .title{
+              opacity: 0;
+            }
           }
         }
       }
     }
     .opiniones{
       .carousel{
-        margin-top: 3rem;
+        margin-top: 2.8rem;
         &.carouselLeft{ animation: scroll-infinite-left 60s linear infinite }
         &.carouselRight{ animation: scroll-infinite-right 60s linear infinite }
         .opinion-item{
           width: 200px;
-          height: 140px;
+          height: 150px;
           .opinion-text{
             font-size: 0.8rem;
           }
@@ -628,7 +621,166 @@ body{
 
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1023px){
+  body{
+    min-height: 100dvh;    
+    h1{
+      margin-top: 2%;
+    }
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    .header{
+      width: auto;
+      nav{
+        gap: 1.7rem;
+        a{
+          letter-spacing: 0;
+        }
+      }
+    }
+    .emergency{
+      bottom: 3vh;
+        a{ padding: 0.4rem}
+    }
+    .nosotros {
+      flex-direction: column-reverse;
+      height: auto;
+      width: 100%;
+      padding: 2rem 0;
+      .slides {
+        gap: 1rem;
+        width: 100%;
+        padding: 0;
+        margin-top: 1rem;
+        .slides-arrow {
+          font-size: 2rem;
+          padding: 10rem 0.7rem;
+          margin: 0;
+        }
+        .slides-card {
+          max-width: 100%;
+          align-items: center;
+        }
+        .slides-title {
+          width: 80%;
+          height: auto;
+          padding: 1rem;
+          font-size: 1.3rem;
+        }
+        .slides-text {
+          font-size: 1.1rem;
+          min-height: 120px;
+          margin-top: 3rem;
+          text-align: center;
+          padding-bottom: 2rem;
+        }
+        .slides-button { 
+          width: 55%;
+          height: 3.5rem;
+          margin-top: 10%;
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+      }
+      .texto {
+        width: 100%;
+        margin: 0;
+        p { 
+          
+        }
+        .botones {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          gap: 1rem;
+          margin-top: 30%;
+          margin-left: 0;
+          a {
+            margin: 0;
+            width: 40%;
+            height: 3rem;
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+    .servicios {
+      .cards {
+        display: flex;
+        flex-wrap: wrap;      
+        justify-content: center;
+        width: 90%;
+        margin: 10% auto 0;
+        gap: 1rem;
+    
+        .card {
+          height: 18vh;
+          width: 25vw;
+          flex-shrink: 0;
+          margin-top: 1%;
+          .descripcion{
+            font-size: .7rem;
+          }
+          .title{
+            font-size: .65rem;
+            height: 25%;
+            justify-content: center;
+          }
+          &:hover{
+            .title{
+              opacity: 0;
+            }
+          }
+        }
+      }
+    }
+    .opiniones{
+      .carousel{
+        margin-top: 2.8rem;
+        &.carouselLeft{ animation: scroll-infinite-left 60s linear infinite }
+        &.carouselRight{ animation: scroll-infinite-right 60s linear infinite }
+        .opinion-item{
+          width: 200px;
+          height: 150px;
+          .opinion-text{
+            font-size: 0.8rem;
+          }
+          .opinion-person{
+            font-size: 0.7rem;
+          }
+          .opinion-rating{
+            margin-bottom: -8%;
+          }
+        }
+      }
+    }
+    .cobertura{
+      h1{
+        margin-bottom: 5%;
+      }
+      div{
+        flex-direction: column-reverse;
+        height: auto;
 
+        .map{
+          width: 90%;
+          height: 200px;
+          margin-top: 1rem;
+        }
+        .zonas{
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+          width: 90%;
+          justify-content: center;
+          .coverageitem{
+            width: 100%;
+            height: 5vh;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 /* Notebook */

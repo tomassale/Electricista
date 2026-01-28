@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import Background from '@/app/_components/Background'
 import Coverage from './Coverage'
 
-const Map = dynamic(() => import('@/app/(auth)/cobertura/Map'), {
+const MapComponent = dynamic(() => import('@/app/(auth)/cobertura/MapComponent'), {
   ssr:false,
   loading: () => <p>Cargando mapa...</p>
 })
@@ -13,7 +13,7 @@ export default function Cobertura() {
     <div className='cobertura'>
       <h1>Cobertura</h1>
       <div>
-        <Map/>
+        <MapComponent/>
         <Coverage/>
       </div>
       <Background page='cobertura'/>

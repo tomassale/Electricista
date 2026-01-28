@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
+import Header from "./_components/Header";
 import { Inter } from 'next/font/google'
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${inter.className}`}>
+        <Header/>
         {children}
       </body>
     </html>

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function Map() {
+export default function MapComponent() {
   return (
     <div className='map'>
       <Image 

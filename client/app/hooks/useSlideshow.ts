@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 
-export const useSlideshow = (length: number, intervalTime: number = 12000) => {
+export const useSlideshow = (length: number) => {
   const [index, setIndex] = useState(0)
 
   const next = useCallback(() => {
@@ -12,9 +12,9 @@ export const useSlideshow = (length: number, intervalTime: number = 12000) => {
   }, [length])
 
   useEffect(() => {
-    const timer = setInterval(next, intervalTime)
+    const timer = setInterval(next, 12000)
     return () => clearInterval(timer)
-  }, [next, intervalTime, index])
+  }, [next, index])
 
   return { 
     currentIndex: index, 

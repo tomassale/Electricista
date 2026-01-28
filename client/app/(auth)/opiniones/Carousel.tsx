@@ -1,7 +1,7 @@
 import opiniones from '@/public/json/opinions.json'
 import OpinionCard from './OpinionCard'
 
-export default function Carousel({classN} : {classN:string}) {
+export default function Carousel({classN} : Readonly<{classN:string}>) {
   return (
     <div className={classN}>
       {opiniones.map((obj) => (
