@@ -1,112 +1,75 @@
-//TITLES
-@mixin titles{
+// VARIABLES (Breakpoints)
+$mobile: "max-width: 767px";
+$tablet: "min-width: 768px) and (max-width: 1024px";
+$notebook: "min-width: 1025px) and (max-width: 1440px) and (min-height: 768px) and (max-height: 900px";
+
+// MIXINS
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin titles {
   text-align: center;
   font-size: 2.5rem;
   padding-top: 1%;
   color: white;
+  
+  @media (#{$mobile}), (#{$tablet}), (#{$notebook}) {
+    margin-top: 2%; // Ajuste general para responsive
+  }
 }
 
-//MIXINS
-@mixin turn($end){
-  @for $i from 1 through $end{
+@mixin turn($end) {
+  @for $i from 1 through $end {
     :nth-child(#{$i}) {
       animation-delay: $i * 0.2s;
     }
   }
 }
-@mixin fade($fade, $delay){
+
+@mixin fade($fade, $delay) {
   opacity: 0;
   animation: fade-#{$fade} 0.6s forwards;
   animation-delay: $delay;
 }
 
-//KEYFRAMES
-@keyframes scroll-infinite-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-@keyframes scroll-infinite-right {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-@keyframes slideInText {
-  0% {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-@keyframes fade-left{
-  0%{
-    opacity: 0;
-    transform: translateX(-10%);
-  }
-  100%{
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-@keyframes fade-right{
-  0%{
-    opacity: 0;
-    transform: translateX(10%);
-  }
-  100%{
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-@keyframes fade-up{
-  0%{
-    opacity: 0;
-    transform: translateY(40%);
-  }
-  100%{
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes fade-down{
-  0%{
-    opacity: 0;
-    transform: translateY(-40%);
-  }
-  100%{
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+// KEYFRAMES (Sin cambios)
+@keyframes scroll-infinite-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes scroll-infinite-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+@keyframes slideInText { 0% { opacity: 0; transform: translateX(20px); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes fade-left { 0% { opacity: 0; transform: translateX(-10%); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes fade-right { 0% { opacity: 0; transform: translateX(10%); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes fade-up { 0% { opacity: 0; transform: translateY(40%); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes fade-down { 0% { opacity: 0; transform: translateY(-40%); } 100% { opacity: 1; transform: translateY(0); } }
 
-*{
+// RESET & BASE
+* {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  a, button{
+  a, button {
     text-decoration: none;
     color: inherit;
     user-select: none;
   }
-  h1{
-    @include titles();
-  }
+  h1 { @include titles(); }
 }
 
-
-body{
+body {
   height: 100%;
-  //Components
-  .header{
+  
+  @media (#{$mobile}) {
+    min-height: 100dvh;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (#{$tablet}), (#{$notebook}) {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  // --- HEADER ---
+  .header {
     background-color: rgba(0, 0, 0, 0.374);
     color: white;
     font-size: 1.5rem;
@@ -116,43 +79,62 @@ body{
     padding: 0 2%;
     box-sizing: border-box;
     border-radius: 15px;
-    nav{
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+    @media (#{$mobile}) { font-size: 0.8rem; width: auto; }
+
+    nav {
+      @include flex-center;
       gap: 4rem;
       height: 7.5vh;
-      a{
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+
+      @media (#{$mobile}), (#{$tablet}) { gap: 1.7rem; }
+
+      a {
+        @include flex-center;
         font-weight: 300;
         letter-spacing: 0.5px;
+        &:hover { transform: translateY(-1px); }
+        
+        @media (#{$mobile}) { letter-spacing: 0; }
       }
-      a:hover{
-        transform: translateY(-1px);
-      }
-      a:focus-visible{
-        outline: 3px solid rgba(96, 214, 105, 0.85);
-        outline-offset: 3px;
+
+      .headerLogo {
+        @media (#{$mobile}) { display: none; }
       }
     }
   }
+
+  // --- EMERGENCY BUTTON ---
   .emergency {
     display: flex;
     position: fixed;
     right: 3vw;
     bottom: 7vh;
-    a{ padding: 1rem }
+    a { padding: 1rem; }
+
+    @media (#{$mobile}), (#{$notebook}) {
+      bottom: 3vh;
+      a { padding: 0.4rem; }
+    }
   }
-  //Páge
-  .nosotros{
+
+  // --- SECCION NOSOTROS ---
+  .nosotros {
     display: flex;
     color: white;
     
-    .texto{
+    // Layout Changes
+    @media (#{$mobile}) { flex-direction: column-reverse; padding: 2rem 0; height: auto; width: 100%; }
+    @media (#{$tablet}) { flex-direction: column; height: auto; width: 100%; }
+    @media (#{$notebook}) { height: auto; width: 100%; padding: 2rem 0; }
+
+    .texto {
       width: 50vw;
-      p{
+      @media (#{$mobile}) { width: 100%; margin: 0; }
+      @media (#{$tablet}) { margin: 0; display: contents; } // Truco del order
+      @media (#{$notebook}) { margin: 0; }
+
+      p {
         @include fade(left, 0.2s);
         height: max-content;
         width: 49rem;
@@ -160,14 +142,35 @@ body{
         text-align: justify;
         line-height: 1.5;
         margin: 12rem 10rem 14rem 10rem;
+
+        @media (#{$mobile}) { display: none; }
+        @media (#{$tablet}) { 
+          order: 1; margin: 5rem 2rem; font-size: 1.4rem; 
+          justify-content: center; align-self: center; width: 40rem; 
+        }
+        @media (#{$notebook}) { width: 32rem; margin: 5rem 5rem; font-size: 1.5rem; }
       }
-      .botones{
+
+      .botones {
         margin-left: 17.5%;
+        display: flex;
         @include fade(up, 1.3s);
-        a{
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+
+        @media (#{$mobile}) { 
+          display: flex; justify-content: center; width: 100%; 
+          gap: 1rem; margin-top: 15%; margin-left: 0; 
+        }
+        @media (#{$tablet}) { 
+          order: 3; display: flex; justify-content: center; 
+          width: 100%; gap: 1rem; margin-left: 0; 
+        }
+        @media (#{$notebook}) {
+          display: flex; justify-content: center; width: 100%; 
+          gap: 1rem; margin-top: 30%; margin-left: 5%;
+        }
+
+        a {
+          @include flex-center;
           height: 4.5rem;
           width: 17rem;
           border-radius: 5px;
@@ -176,22 +179,25 @@ body{
           font-weight: 700;
           letter-spacing: 0.5px;
           color: white;
-          text-shadow:
-            -1px -1px 0 #000,  
-             1px -1px 0 #000,
-            -1px  1px 0 #000,
-             1px  1px 0 #000,
-             0px  2px 2px #000;
+          text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0px 2px 2px #000;
+
+          @media (#{$mobile}) { margin: 0; width: 40%; height: 3rem; font-size: 1.5rem; }
+          @media (#{$tablet}) { margin: 0; width: 30%; height: 3rem; margin-top: 10%; font-size: 1.5rem; }
+          @media (#{$notebook}) { margin: 0; width: 40%; height: 3rem; font-size: 1.5rem; }
         }
       }
     }
+
     .slides {
       flex: 1;
       display: flex;
       gap: 2rem;
       margin-top: 3%;
       @include fade(right, 0.7s);
-      
+
+      @media (#{$mobile}) { gap: 1rem; width: 100%; padding: 0; margin-top: 1rem; }
+      @media (#{$tablet}) { order: 2; gap: 1rem; width: 100%; padding: 0; margin-top: 0; }
+
       .slides-arrow {
         background: transparent;
         border: none;
@@ -205,13 +211,18 @@ body{
         flex-shrink: 0;
         
         &:hover { transform: scale(1.1); }
+
+        @media (#{$mobile}) { font-size: 2rem; padding: 10rem 0.7rem; margin: 0; }
+        @media (#{$tablet}) { font-size: 2rem; padding: 10rem 3rem; margin: 0; }
+        @media (#{$notebook}) { font-size: 4rem; padding: 10rem 3.3rem; }
       }
 
       .slides-card {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        @include flex-center;
+        
+        @media (#{$mobile}), (#{$tablet}) { max-width: 100%; align-items: center; }
       }
 
       .slides-title {
@@ -222,10 +233,11 @@ body{
         border: 2px solid #FFD700; 
         width: 500px;
         height: 180px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center;
         background: transparent;
+
+        @media (#{$mobile}), (#{$tablet}) { width: 80%; height: auto; padding: 1rem; font-size: 1.2rem; }
+        @media (#{$notebook}) { width: 85%; height: auto; padding: 1rem; font-size: 1.3rem; }
       }
 
       .slides-text {
@@ -236,12 +248,14 @@ body{
         width: 100%;
         margin-top: 2.5rem;
         min-height: 300px;
+
+        @media (#{$mobile}) { font-size: 1.1rem; min-height: 140px; margin-top: 1rem; text-align: center; padding-bottom: 2rem; }
+        @media (#{$tablet}) { width: 80%; padding: 2rem 3rem; font-size: 1.4rem; min-height: 120px; text-align: justify; }
+        @media (#{$notebook}) { font-size: 1.45rem; }
       }
 
       .slides-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center;
         margin: 15% auto 0 auto;
         width: 16rem;
         height: 5rem;
@@ -251,13 +265,13 @@ body{
         background-color: #000;
         border: 2px solid #5fb4ff; 
         border-radius: 5px;
-        text-decoration: none;
         transition: all 0.3s ease;
 
-        &:hover {
-          cursor: pointer;
-          background-color: #daff3627;
-        }
+        &:hover { cursor: pointer; background-color: #daff3627; }
+
+        @media (#{$mobile}) { width: 55%; height: 3.5rem; margin-top: 10%; font-weight: 600; font-size: 1.1rem; }
+        @media (#{$tablet}) { width: 35%; height: 3.5rem; margin-top: 2%; font-weight: 600; font-size: 1.1rem; }
+        @media (#{$notebook}) { width: 55%; height: 3.5rem; margin-top: 10%; font-weight: 400; font-size: 1.4rem; }
       }
       
       .anim-text {
@@ -266,15 +280,23 @@ body{
       }
     }
   }
+
+  // --- SECCION SERVICIOS ---
   .servicios {
     .cards {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       width: 75%;
-      margin: 0 auto;
+      margin: 2% auto 0;
       justify-items: center;
       align-items: center;
-      margin-top: 2%;
+      gap: 1rem;
+      
+      // Flex en mobile/tablet
+      @media (#{$mobile}) { display: flex; flex-wrap: wrap; justify-content: center; width: 90%; margin: 5% auto 0; }
+      @media (#{$tablet}) { display: flex; flex-wrap: wrap; justify-content: center; width: 90%; margin: 10% auto 0; }
+      @media (#{$notebook}) { display: flex; flex-wrap: wrap; justify-content: center; width: 90%; }
+
       .card {
         @include fade(up, 0.6s);
         width: 13vw;
@@ -283,19 +305,22 @@ body{
         position: relative;
         overflow: hidden;
         margin-top: 5%;
+
+        @media (#{$mobile}), (#{$tablet}) { height: 18vh; width: 25vw; flex-shrink: 0; margin-top: 1%; }
+        @media (#{$notebook}) { height: 28vh; width: 18vw; flex-shrink: 0; margin-top: 1%; }
   
         .descripcion {
           position: absolute;
           inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          @include flex-center;
           color: white;
           opacity: 0;
           transition: opacity 0.3s ease;
           z-index: 2;
           text-align: center;
           padding: 1rem;
+
+          @media (#{$mobile}), (#{$tablet}), (#{$notebook}) { font-size: .7rem; }
         }
   
         .title {
@@ -306,19 +331,18 @@ body{
           width: 80%;
           height: 20%;
           border-radius: 10%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          @include flex-center;
           background: rgba(60, 60, 60, 0.384);
-          -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
           z-index: 2; 
           mask-image: radial-gradient(circle, black 100%);
-          -webkit-mask-image: radial-gradient(circle, black 100%);
           color: white;
           font-size: 1rem;
           font-weight: 500;
           letter-spacing: 0.5px;
           text-align: center;
+
+          @media (#{$mobile}), (#{$tablet}), (#{$notebook}) { font-size: .65rem; height: 25%; justify-content: center; }
         }
   
         &::after {
@@ -334,35 +358,42 @@ body{
         &:hover {
           transform: translateY(-8px);
           box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
-          .descripcion {
-            opacity: 1;
-          }
-          &::after {
-            opacity: 1;
+          .descripcion, &::after { opacity: 1; }
+          
+          @media (#{$mobile}) {
+             .title { opacity: 0; }
           }
         }
-  
       }
       @include turn(8);
     }
   }
-  .opiniones{
+
+  // --- SECCION OPINIONES ---
+  .opiniones {
     height: 100vh;
 
-    .carousel{
+    .carousel {
       display: flex;
       gap: 2rem;
       margin-top: 5rem;
       width: max-content;
 
-      &.carouselLeft{ animation: scroll-infinite-left 40s linear infinite }
-      &.carouselRight{ animation: scroll-infinite-right 40s linear infinite }
+      @media (#{$mobile}) { margin-top: 2.8rem; }
+      @media (#{$tablet}) { margin-top: 6rem; }
+      @media (#{$notebook}) { margin-top: 2.8rem; }
 
-      &:hover{
-        animation-play-state: paused;
+      &.carouselLeft { animation: scroll-infinite-left 40s linear infinite; }
+      &.carouselRight { animation: scroll-infinite-right 40s linear infinite; }
+
+      @media (#{$mobile}) {
+        &.carouselLeft { animation-duration: 60s; }
+        &.carouselRight { animation-duration: 60s; }
       }
 
-      .opinion-item{
+      &:hover { animation-play-state: paused; }
+
+      .opinion-item {
         max-width: 350px;
         background: white;
         border-radius: 16px;
@@ -375,415 +406,100 @@ body{
         flex-shrink: 0;
         position: relative;
 
-        
-        .opinion-text{
+        @media (#{$mobile}) { width: 200px; height: 150px; }
+        @media (#{$tablet}) { width: 250px; height: 140px; }
+        @media (#{$notebook}) { width: 200px; height: 150px; }
+
+        .opinion-text {
           font-size: 1.1rem;
           line-height: 1.6;
           flex-grow: 1;
+
+          @media (#{$mobile}), (#{$tablet}), (#{$notebook}) { font-size: 0.8rem; }
         }
 
-        .opinion-person{
+        .opinion-person {
           font-size: 1rem;
           font-weight: 600;
           color: #9b9b9b;
           margin-top: auto;
+          
+          @media (#{$mobile}), (#{$tablet}), (#{$notebook}) { font-size: 0.7rem; }
         }
-        .opinion-rating{
+
+        .opinion-rating {
           font-size: 1.5rem;
           display: flex;
           gap: 0.25rem;
-          align-items: center;
-          justify-content: center;
+          @include flex-center;
           margin-top: auto;
           margin-bottom: 0.5rem;
 
-          .star-filled{
-            color: #000;
-            font-weight: 900;
-          }
+          @media (#{$mobile}), (#{$tablet}), (#{$notebook}) { margin-bottom: -8%; }
 
-          .star-empty{
-            color: #9b9b9b;
-            font-weight: 900;
-          }
+          .star-filled { color: #000; font-weight: 900; }
+          .star-empty { color: #9b9b9b; font-weight: 900; }
         }
       }
     }
   }
 
-  .cobertura{
+  // --- SECCION COBERTURA ---
+  .cobertura {
     height: 100vh;
     width: 100vw;
-    h1{
-      margin-bottom: 5%;
-    }
-    div{
+    
+    h1 { margin-bottom: 5%; }
+
+    div {
       display: flex;
       height: 50vh;
-      justify-content: center;
-      align-items: center;
-      .map{
+      @include flex-center;
+      
+      @media (#{$mobile}), (#{$tablet}) { flex-direction: column-reverse; height: auto; }
+      @media (#{$notebook}) { margin-top: 1%; height: auto; }
+
+      .map {
         width: 50%;
         @include fade(left, 0.3s);
+
+        @media (#{$mobile}) { width: 90%; height: 200px; margin-top: 1rem; }
+        @media (#{$tablet}) { width: 90%; height: 350px; margin-top: 1rem; }
+        @media (#{$notebook}) { width: 90%; height: 380px; }
       }
-      .zonas{
+
+      .zonas {
         flex-wrap: wrap;
         min-width: 40%;
         max-height: 95%;
-        .coverageitem{
+        
+        @media (#{$mobile}), (#{$tablet}), (#{$notebook}) {
+           display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; width: 90%; justify-content: center;
+        }
+        @media (#{$notebook}) { margin-left: 3%; }
+
+        .coverageitem {
           @include fade(up, 0.5s);
           color: black;
           width: 45%;
           height: 7vh;
           margin-left: 1%;
           background-color: #EEEEEE;
-          p{
-            text-align: center;
-          }
+          
+          @media (#{$mobile}) { width: 100%; height: 5vh; margin: 0; }
+          @media (#{$tablet}) { width: 100%; height: 6vh; margin: 0; }
+          @media (#{$notebook}) { width: 90%; height: 8vh; margin: 0; }
+
+          p { text-align: center; }
         }
+        
         @include turn(10);
-        .coverageitem:hover{
+        
+        .coverageitem:hover {
           background-color: black;
           color: #FFD700;
-          
         }
       }
     }
   }
-}
-
-/* Mobile*/
-@media (max-width: 767px){
-  body{
-    min-height: 100dvh;    
-    h1{
-      margin-top: 2%;
-    }
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-    .header{
-      font-size: 0.8rem;
-      width: auto;
-      nav{
-        gap: 1.7rem;
-        a{
-          letter-spacing: 0;
-        }
-        .headerLogo{
-          display: none;
-        }
-      }
-    }
-    .emergency{
-      bottom: 3vh;
-        a{ padding: 0.4rem}
-    }
-    .nosotros {
-      flex-direction: column-reverse;
-      height: auto;
-      width: 100%;
-      padding: 2rem 0;
-      .slides {
-        gap: 1rem;
-        width: 100%;
-        padding: 0;
-        margin-top: 1rem;
-        .slides-arrow {
-          font-size: 2rem;
-          padding: 10rem 0.7rem;
-          margin: 0;
-        }
-        .slides-card {
-          max-width: 100%;
-          align-items: center;
-        }
-        .slides-title {
-          width: 80%;
-          height: auto;
-          padding: 1rem;
-          font-size: 1.3rem;
-        }
-        .slides-text {
-          font-size: 1.1rem;
-          min-height: 120px;
-          margin-top: 3rem;
-          text-align: center;
-          padding-bottom: 2rem;
-        }
-        .slides-button { 
-          width: 55%;
-          height: 3.5rem;
-          margin-top: 10%;
-          font-weight: 600;
-          font-size: 1.1rem;
-        }
-      }
-
-      .texto {
-        width: 100%;
-        margin: 0;
-        p { display: none }
-        .botones {
-          display: flex;
-          justify-content: center;
-          width: 100%;
-          gap: 1rem;
-          margin-top: 30%;
-          margin-left: 0;
-          a {
-            margin: 0;
-            width: 40%;
-            height: 3rem;
-            font-size: 1.5rem;
-          }
-        }
-      }
-    }
-    .servicios {
-      .cards {
-        display: flex;
-        flex-wrap: wrap;      
-        justify-content: center;
-        width: 90%;
-        margin: 5% auto 0;
-        gap: 1rem;
-    
-        .card {
-          height: 18vh;
-          width: 25vw;
-          flex-shrink: 0;
-          margin-top: 1%;
-          .descripcion{
-            font-size: .7rem;
-          }
-          .title{
-            font-size: .65rem;
-            height: 25%;
-            justify-content: center;
-          }
-          &:hover{
-            .title{
-              opacity: 0;
-            }
-          }
-        }
-      }
-    }
-    .opiniones{
-      .carousel{
-        margin-top: 2.8rem;
-        &.carouselLeft{ animation: scroll-infinite-left 60s linear infinite }
-        &.carouselRight{ animation: scroll-infinite-right 60s linear infinite }
-        .opinion-item{
-          width: 200px;
-          height: 150px;
-          .opinion-text{
-            font-size: 0.8rem;
-          }
-          .opinion-person{
-            font-size: 0.7rem;
-          }
-          .opinion-rating{
-            margin-bottom: -8%;
-          }
-        }
-      }
-    }
-    .cobertura{
-      h1{
-        margin-bottom: 5%;
-      }
-      div{
-        flex-direction: column-reverse;
-        height: auto;
-
-        .map{
-          width: 90%;
-          height: 200px;
-          margin-top: 1rem;
-        }
-        .zonas{
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0.5rem;
-          width: 90%;
-          justify-content: center;
-          .coverageitem{
-            width: 100%;
-            height: 5vh;
-            margin: 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-/* Tablet */
-@media (min-width: 768px) and (max-width: 1023px){
-  body{
-    min-height: 100dvh;    
-    h1{
-      margin-top: 2%;
-    }
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-    .header{
-      width: auto;
-      nav{
-        gap: 1.7rem;
-        a{
-          letter-spacing: 0;
-        }
-      }
-    }
-    .emergency{
-      bottom: 3vh;
-        a{ padding: 0.4rem}
-    }
-    .nosotros {
-      flex-direction: column-reverse;
-      height: auto;
-      width: 100%;
-      padding: 2rem 0;
-      .slides {
-        gap: 1rem;
-        width: 100%;
-        padding: 0;
-        margin-top: 1rem;
-        .slides-arrow {
-          font-size: 2rem;
-          padding: 10rem 0.7rem;
-          margin: 0;
-        }
-        .slides-card {
-          max-width: 100%;
-          align-items: center;
-        }
-        .slides-title {
-          width: 80%;
-          height: auto;
-          padding: 1rem;
-          font-size: 1.3rem;
-        }
-        .slides-text {
-          font-size: 1.1rem;
-          min-height: 120px;
-          margin-top: 3rem;
-          text-align: center;
-          padding-bottom: 2rem;
-        }
-        .slides-button { 
-          width: 55%;
-          height: 3.5rem;
-          margin-top: 10%;
-          font-weight: 600;
-          font-size: 1.1rem;
-        }
-      }
-      .texto {
-        width: 100%;
-        margin: 0;
-        p { 
-          
-        }
-        .botones {
-          display: flex;
-          justify-content: center;
-          width: 100%;
-          gap: 1rem;
-          margin-top: 30%;
-          margin-left: 0;
-          a {
-            margin: 0;
-            width: 40%;
-            height: 3rem;
-            font-size: 1.5rem;
-          }
-        }
-      }
-    }
-    .servicios {
-      .cards {
-        display: flex;
-        flex-wrap: wrap;      
-        justify-content: center;
-        width: 90%;
-        margin: 10% auto 0;
-        gap: 1rem;
-    
-        .card {
-          height: 18vh;
-          width: 25vw;
-          flex-shrink: 0;
-          margin-top: 1%;
-          .descripcion{
-            font-size: .7rem;
-          }
-          .title{
-            font-size: .65rem;
-            height: 25%;
-            justify-content: center;
-          }
-          &:hover{
-            .title{
-              opacity: 0;
-            }
-          }
-        }
-      }
-    }
-    .opiniones{
-      .carousel{
-        margin-top: 2.8rem;
-        &.carouselLeft{ animation: scroll-infinite-left 60s linear infinite }
-        &.carouselRight{ animation: scroll-infinite-right 60s linear infinite }
-        .opinion-item{
-          width: 200px;
-          height: 150px;
-          .opinion-text{
-            font-size: 0.8rem;
-          }
-          .opinion-person{
-            font-size: 0.7rem;
-          }
-          .opinion-rating{
-            margin-bottom: -8%;
-          }
-        }
-      }
-    }
-    .cobertura{
-      h1{
-        margin-bottom: 5%;
-      }
-      div{
-        flex-direction: column-reverse;
-        height: auto;
-
-        .map{
-          width: 90%;
-          height: 200px;
-          margin-top: 1rem;
-        }
-        .zonas{
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0.5rem;
-          width: 90%;
-          justify-content: center;
-          .coverageitem{
-            width: 100%;
-            height: 5vh;
-            margin: 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-/* Notebook */
-@media (min-width: 1024px) and (max-width: 1439px){
-
 }
