@@ -5,7 +5,7 @@ import SlidesItems from "./SlidesItems"
 import { useSlideshow } from "@/app/hooks/useSlideshow"
 
 export default function Slides() {
-  const { currentIndex, next, prev } = useSlideshow(slides.length, 12000)
+  const { currentIndex, next, prev } = useSlideshow(slides.length)
 
   return (
     <div className="slides">
