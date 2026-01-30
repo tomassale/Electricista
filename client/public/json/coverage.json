@@ -1,12 +1,12 @@
 [
-  { "id": 0, "city": "La Matanza" },
-  { "id": 1, "city": "CABA" },
-  { "id": 2, "city": "Vicente López" },
+  { "id": 0, "city": "Haedo" },
+  { "id": 1, "city": "Ramos Mejia" },
+  { "id": 2, "city": "Isidro Casanova" },
   { "id": 3, "city": "Morón" },
-  { "id": 4, "city": "Merlo" },
-  { "id": 5, "city": "Tres de Febrero" },
-  { "id": 6, "city": "Lomas de Zamora" },
-  { "id": 7, "city": "Ituzaingó"  },
-  { "id": 8, "city": "Hurlingham"},
-  { "id": 9, "city": "Marcos Paz"}
+  { "id": 4, "city": "San Antonio de Padua" },
+  { "id": 5, "city": "Villa Luzuriaga" },
+  { "id": 6, "city": "Lomas del Mirador" },
+  { "id": 7, "city": "Ituzaingó" },
+  { "id": 8, "city": "Villa Sarmiento"},
+  { "id": 9, "city": "San Justo"}
 ]
