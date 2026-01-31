@@ -8,14 +8,14 @@ export default function LeftIndex() {
       <div className='botones'>
         <a 
           style={{backgroundColor: "#60D669"}} 
-          href='https://wa.me/+541159638765?text=Hola' 
+          href='https://wa.me/+541159098126' 
           target="_blank" 
           aria-label="Mensaje por Whatsapp">
             Whatsapp
         </a>
         <a 
           style={{backgroundColor: "#EA5A47"}} 
-          href='tel:+541159638765' 
+          href='tel:+541159098126' 
           aria-label="Llamar por teléfono">
             Llamar
         </a>
