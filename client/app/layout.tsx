@@ -6,7 +6,7 @@ import { Inter } from 'next/font/google'
 export const metadata: Metadata = {
   title: "Electricista Matriculado",
   description: "Página electricista",
-  keywords: ["Electricista", "Zona Oeste"],
+  keywords: ["Electricista", "Zona Oeste", ""],
   icons: {
     icon: "/favicon.ico"
   }

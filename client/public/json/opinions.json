@@ -2,13 +2,13 @@
   {
     "id": 0,
     "stars": 5,
-    "person": "Juan, Palermo",
+    "person": "Juan, Casanova",
     "opinion": "Muy buen servicio, rápido y prolijo. Solucionó un corto que tenía hace días en la cocina. Altamente recomendable."
   },
   {
     "id": 1,
     "stars": 5,
-    "person": "María, Belgrano",
+    "person": "María, Tablada",
     "opinion": "Excelente atención. Vino puntual, identificó la falla al instante y me explicó todo con claridad. Precio muy razonable."
   },
   {
@@ -20,29 +20,17 @@
   {
     "id": 3,
     "stars": 5,
-    "person": "Laura, Caballito",
+    "person": "Laura, Haedo",
     "opinion": "Me salvó con una urgencia el fin de semana. Muy amable y eficiente, dejó todo funcionando y seguro. Una tranquilidad."
   },
   {
     "id": 4,
-    "stars": 4,
+    "stars": 3,
     "person": "Pablo, Villa Luzuriaga",
-    "opinion": "Solicité un presupuesto para renovar toda la instalación de un local. El asesoramiento fue impecable y el trabajo se realizó en los plazos acordados. Muy profesional."
-  },
-  {
-    "id": 5,
-    "stars": 5,
-    "person": "Ana, San Isidro",
-    "opinion": "Súper recomendable. Instaló los ventiladores de techo y revisó toda la instalación de la casa. Muy detallista y prolijo en su forma de trabajar."
-  },
-  {
-    "id": 6,
-    "stars": 4,
-    "person": "Diego, Casanova",
-    "opinion": "Correcto y cumplidor. Realizó el cambio de tablero sin problemas. Buena relación precio-calidad, volvería a llamarlo."
+    "opinion": "Solicité un presupuesto para renovar toda la instalación de un local. El asesoramiento fue impecable."
   },
   { 
-    "id": 7,
+    "id": 5,
     "stars": 5,
     "person": "Tomás, Lomas del Mirador",
     "opinion": "Excelente servicio, vino a la madrugada por un corte, lo solucionó rápido y eficientemente. Me explicó todo y pudo encontrar la falla."  
