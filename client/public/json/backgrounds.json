@@ -3,8 +3,7 @@
     "id": 0,
     "page": "nosotros",
     "src": "/img/background/backNos.webp",
-    "alt": "Fondo sección Nosotros",
-    "priority": true
+    "alt": "Fondo sección Nosotros"
   },
   {
     "id": 1,

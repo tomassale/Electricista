@@ -16,7 +16,7 @@ export default function Background({page}: Readonly<{page:string}>) {
         alt={bgImage.alt ||"Imagen de Fondo"}
         fill
         style={{ objectFit: "cover", zIndex: -1}}
-        priority={bgImage.priority}
+        priority
       />
     </div>
   )

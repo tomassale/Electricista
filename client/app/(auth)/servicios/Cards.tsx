@@ -7,7 +7,7 @@ export default function Cards() {
       {services.map((obj) => (
         <div key={obj.id} className='card'>
           <div className='hoverClass'>
-            <Image src={obj.src} alt={obj.alt} fill />
+            <Image src={obj.src} alt={obj.alt} fill priority/>
             <p className='descripcion'>{obj.description}</p>
           </div>
           <div className='title'>
