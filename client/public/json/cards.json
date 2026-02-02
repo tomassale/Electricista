@@ -4,56 +4,56 @@
     "id": 0,
     "title": "Recableado",
     "description": "Recableado de obra y cableados a nuevo.",
-    "src": "/img/service/recableado.png",
+    "src": "/img/service/recableado.webp",
     "alt": "Instalación de cableado nuevo"
   },
   {
     "id": 1,
     "title": "Módulos, tomacorrientes y llaves",
     "description": "Reemplazo de módulos tomacorrientes y llaves punto.",
-    "src": "/img/service/modulos.png",
+    "src": "/img/service/modulos.webp",
     "alt": "Instalación de enchufes y teclas"
   },
   {
     "id": 2,
     "title": "Atención a sus proyectos",
     "description": "Atención a su urgencia y respaldo a sus proyectos eléctricos.",
-    "src": "/img/service/atencionP.png",
+    "src": "/img/service/atencionP.webp",
     "alt": "Electricista trabajando en obra"
   },
   {
     "id": 3,
     "title": "Mediciones",
     "description": "Mediciones de tensión y consumo con instrumental de precisión.",
-    "src": "/img/service/medicionE.png",
+    "src": "/img/service/medicionE.webp",
     "alt": "Multímetro midiendo tensión"
   },
   {
     "id": 4,
     "title": "Fugas y cortocircuitos",
     "description": "Búsqueda y solución de fugas y cortocircuito.",
-    "src": "/img/service/fuga.png",
+    "src": "/img/service/fuga.webp",
     "alt": "Reparación de fallas eléctricas"
   },
   {
     "id": 5,
     "title": "Artefactos",
     "description": "Colocación de artefactos de iluminación. Proyectos de iluminación perimetral.",
-    "src": "/img/service/artefactos.png",
+    "src": "/img/service/artefactos.webp",
     "alt": "Instalación de luces"
   },
   {
     "id": 6,
     "title": "Urgencias eléctricas",
     "description": "Llegamos siempre en tiempo y forma, eficientes y pragmáticos.",
-    "src": "/img/service/urgencia.png",
+    "src": "/img/service/urgencia.webp",
     "alt": "Servicio de urgencia eléctrica"
   },
   {
     "id": 7,
     "title": "Tableros Monofásicos",
     "description": "Recableado de tableros monofásicos y trifásicos.",
-    "src": "/img/service/tablero.png",
+    "src": "/img/service/tablero.webp",
     "alt": "Armado de tablero eléctrico"
   }
 ]

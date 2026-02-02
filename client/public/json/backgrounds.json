@@ -2,26 +2,26 @@
   {
     "id": 0,
     "page": "nosotros",
-    "src": "/img/background/backNos.png",
+    "src": "/img/background/backNos.webp",
     "alt": "Fondo sección Nosotros",
     "priority": true
   },
   {
     "id": 1,
     "page": "servicios",
-    "src": "/img/background/backSer.png",
+    "src": "/img/background/backSer.webp",
     "alt": "Fondo sección Servicios"
   },
   {
     "id": 2,
     "page": "opiniones",
-    "src": "/img/background/backOpi.png",
+    "src": "/img/background/backOpi.webp",
     "alt": "Fondo sección Opiniones"
   },
   {
     "id": 3,
     "page": "cobertura",
-    "src": "/img/background/backCob.png",
+    "src": "/img/background/backCob.webp",
     "alt": "Fondo sección Cobertura"
   }
 ]

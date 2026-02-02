@@ -77,7 +77,10 @@ body {
   @media (#{$mobile}) {
     min-height: 100dvh;
     -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
   }
+
   @media (#{$tablet}), (#{$notebook}) {
     -webkit-tap-highlight-color: transparent;
   }
@@ -586,7 +589,7 @@ body {
 }
 body:has(.cobertura) {
   .emergency {
-    @media (#{$notebook}), (#{$desktop}) {
+    @media (#{$notebook}), (#{$medium}), (#{$desktop}) {
       display: none;
     }
   }
