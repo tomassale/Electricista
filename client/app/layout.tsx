@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import Header from "./_components/Header";
 import { Inter } from 'next/font/google'
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Electricista Matriculado",
@@ -54,6 +55,7 @@ export default function RootLayout({
       <body className={`${inter.className}`}>
         <Header/>
         {children}
+        <SpeedInsights/>
       </body>
     </html>
   );
