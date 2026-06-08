@@ -1,6 +1,5 @@
 "use client"
 import dynamic from 'next/dynamic'
-import Background from '@/app/_components/Background'
 import InfoContainer from './rightComponent/infoContainer'
 
 const MapComponent = dynamic(() => import('@/app/(auth)/cobertura/leftComponent/MapComponent'), {
@@ -16,7 +15,6 @@ export default function Cobertura() {
         <MapComponent/>
         <InfoContainer/>
       </div>
-      <Background page='cobertura'/>
     </div>
   )
 }
