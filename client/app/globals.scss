@@ -120,6 +120,7 @@ body {
 
     @media (#{$miniMobile}) { font-size: 0.7rem; width: 98%; padding: 0 1%; }
     @media (#{$mobile}) { font-size: 0.8rem; width: auto; }
+    @media (#{$tablet}), (#{$largeTablet}) { font-size: 1.2rem }
 
     nav {
       @include flex-center;
@@ -159,21 +160,20 @@ body {
     @include background('/img/background/backNos.webp');
     display: flex;
     color: white;
-    
     min-height: 100vh;
     width: 100%;
     padding-top: 10vh;
     // Layout Changes
-    @media (#{$miniMobile}) { flex-direction: column-reverse; padding: 1rem 0; height: auto; width: 100%; }
-    @media (#{$mobile}) { flex-direction: column-reverse; padding: 2rem 0; height: auto; width: 100%; }
-    @media (#{$tablet}) { flex-direction: column; height: auto; width: 100%; }
-    @media (#{$notebook}), (#{$medium}) { height: auto; width: 100%; padding: 2rem 0; }
+    @media (#{$miniMobile}) { flex-direction: column-reverse; height: auto; width: 100%; }
+    @media (#{$mobile}) { flex-direction: column-reverse; height: auto; width: 100%; }
+    @media (#{$tablet}), (#{$largeTablet}) { flex-direction: column; height: auto; width: 100%; }
+    @media (#{$notebook}), (#{$medium}) { height: auto; width: 100%; }
 
     .texto {
       width: 50vw;
       @media (#{$miniMobile}) { width: 100%; margin: 0; }
       @media (#{$mobile}) { width: 100%; margin: 0; }
-      @media (#{$tablet}) { margin: 0; display: contents; }
+      @media (#{$tablet}), (#{$largeTablet}) { margin: 0; display: contents; }
       @media (#{$notebook}), (#{$medium}) { margin: 0; }
 
       p {
@@ -187,7 +187,7 @@ body {
 
         @media (#{$miniMobile}) { display: none; }
         @media (#{$mobile}) { display: none; }
-        @media (#{$tablet}) { 
+        @media (#{$tablet}), (#{$largeTablet}) { 
           order: 1; margin: 5rem 2rem; font-size: 1.4rem; 
           justify-content: center; align-self: center; width: 40rem; 
         }
@@ -204,7 +204,7 @@ body {
 
         @media (#{$miniMobile}) { margin: auto; width: 80%; }
         @media (#{$mobile}) { width: 100%; margin-top: 15%; margin-left: 0 }
-        @media (#{$tablet}) { order: 3; width: 100%; margin-left: 0 }
+        @media (#{$tablet}), (#{$largeTablet}) { order: 3; width: 100%; margin-left: 0 }
         @media (#{$notebook}) { width: 100%; margin-top: 30%; margin-left: 5% }
         @media (#{$medium}) { width: 100%; margin-top: 20%; margin-left: 1% }
 
@@ -222,7 +222,7 @@ body {
 
           @media (#{$miniMobile}) { margin: 0; width: 80%; height: 2.8rem; font-size: 1.2rem }
           @media (#{$mobile}) { margin: 0; width: 40%; height: 3rem; font-size: 1.5rem }
-          @media (#{$tablet}) { margin: 0; width: 30%; height: 3rem; margin-top: 10%; font-size: 1.5rem }
+          @media (#{$tablet}), (#{$largeTablet}) { margin: 0; width: 30%; height: 3rem; margin-top: 10%; font-size: 1.5rem }
           @media (#{$notebook}) { margin: 0; width: 40%; height: 3rem; font-size: 1.5rem }
           @media (#{$medium}) { margin: 0; width: 35%; height: 3rem; font-size: 1.5rem }
         }
@@ -238,7 +238,7 @@ body {
 
       @media (#{$miniMobile}) { gap: 0.5rem; width: 100%; padding: 0; margin-top: 1rem; }
       @media (#{$mobile}) { gap: 1rem; width: 100%; padding: 0; margin-top: 1rem; }
-      @media (#{$tablet}) { order: 2; gap: 1rem; width: 100%; padding: 0; margin-top: 0; }
+      @media (#{$tablet}), (#{$largeTablet}) { order: 2; gap: 1rem; width: 100%; padding: 0; margin-top: 0; }
 
       .slides-arrow {
         background: transparent;
@@ -256,7 +256,7 @@ body {
 
         @media (#{$miniMobile}) { font-size: 1.5rem; padding: 10rem 0.2rem; margin: 0 }
         @media (#{$mobile}) { font-size: 2rem; padding: 10rem 0.7rem; margin: 0 }
-        @media (#{$tablet}) { font-size: 2rem; padding: 10rem 3rem; margin: 0 }
+        @media (#{$tablet}), (#{$largeTablet}) { font-size: 2rem; padding: 10rem 3rem; margin: 0 }
         @media (#{$notebook}) { font-size: 4rem; padding: 10rem 3.3rem }
         @media (#{$medium}) { font-size: 4rem; padding: 13rem 3.3rem }
       }
@@ -267,7 +267,7 @@ body {
         @include flex-center;
         
         @media (#{$miniMobile}) { max-width: 100%; align-items: center; }
-        @media (#{$mobile}), (#{$tablet}) { max-width: 100%; align-items: center; }
+        @media (#{$mobile}), (#{$tablet}), (#{$largeTablet}) { max-width: 100%; align-items: center; }
       }
 
       .slides-title {
@@ -282,7 +282,7 @@ body {
         background: transparent;
 
         @media (#{$miniMobile}) { width: 90%; height: auto; padding: 0.5rem; font-size: 1rem; border-width: 1px; }
-        @media (#{$mobile}), (#{$tablet}) { width: 80%; height: auto; padding: 1rem; font-size: 1.1rem; }
+        @media (#{$mobile}), (#{$tablet}), (#{$largeTablet}) { width: 80%; height: auto; padding: 1rem; font-size: 1.1rem; }
         @media (#{$notebook}) { width: 85%; height: auto; padding: 1rem; font-size: 1.3rem; }
         @media (#{$medium}) { width: 85%; height: auto; padding: 1.2rem; font-size: 1.5rem; }
       }
@@ -298,7 +298,8 @@ body {
 
         @media (#{$miniMobile}) { font-size: 1rem; height: 160px; margin-top: 0.5rem; text-align: center; padding-bottom: 1rem; }
         @media (#{$mobile}) { font-size: 1.05rem; height: 180px; margin-top: 1rem; text-align: center; padding-bottom: 2rem; }
-        @media (#{$tablet}) { width: 80%; padding: 2rem 3rem; font-size: 1.4rem; height: 200px; text-align: justify; }
+        
+        @media (#{$tablet}), (#{$largeTablet}) { width: 85%; padding: 2rem 3rem; font-size: 1.4rem; height: 200px; text-align: justify; }
         @media (#{$notebook}) { height: 260px; font-size: 1.45rem; }
         @media (#{$medium}) { height: 270px; font-size: 1.6rem; }
       }
@@ -320,7 +321,7 @@ body {
 
         @media (#{$miniMobile}) { width: 70%; height: 3rem; margin-top: 5%; font-weight: 600; font-size: 1rem; }
         @media (#{$mobile}) { width: 55%; height: 3.5rem; margin-top: 10%; font-weight: 600; font-size: 1.1rem; }
-        @media (#{$tablet}) { width: 35%; height: 3.5rem; margin-top: 2%; font-weight: 600; font-size: 1.1rem; }
+        @media (#{$tablet}), (#{$largeTablet}) { width: 35%; height: 3.5rem; margin-top: 2%; font-weight: 600; font-size: 1.1rem; }
         @media (#{$notebook}) { width: 55%; height: 3.5rem; margin-top: 10%; font-weight: 400; font-size: 1.4rem; }
         @media (#{$medium}) { width: 55%; height: 3.5rem; margin-top: 10%; font-weight: 400; font-size: 1.4rem; }
       }
@@ -365,6 +366,7 @@ body {
 
         @media (#{$miniMobile}) { width: 25vw; height: 16vh; margin-top: 2%; }
         @media (#{$mobile}), (#{$tablet}) { height: 18vh; width: 25vw; flex-shrink: 0; margin-top: 1%; }
+        @media (#{$largeTablet}) { height: 28vh; width: 20vw;}
         @media (#{$notebook}) { height: 28vh; width: 18vw; flex-shrink: 0; margin-top: 1%; }
         @media (#{$medium}) { height: 28vh; width: 14vw; flex-shrink: 0; margin-top: 3%; }
   
@@ -403,7 +405,7 @@ body {
           text-align: center;
 
           @media (#{$miniMobile}) { font-size: 0.6rem; height: 30%; width: 90%; }
-          @media (#{$mobile}), (#{$tablet}), (#{$notebook}) { font-size: .65rem; height: 25%; justify-content: center; }
+          @media (#{$mobile}), (#{$tablet}), (#{$largeTablet}), (#{$notebook}) { font-size: .65rem; height: 25%; justify-content: center; }
         }
   
         &::after {
@@ -539,11 +541,14 @@ body {
 
       .map {
         width: 50%;
+        margin-top: 1rem;
         @include fade(left, 0.3s);
-        @media (#{$miniMobile}) { width: 95%; height: 180px; margin-top: 1rem; }
-        @media (#{$mobile}) { width: 90%; height: 200px; margin-top: 1rem; }
-        @media (#{$tablet}) { width: 90%; height: 350px; margin-top: 1rem; }
-        @media (#{$notebook}) { width: 90%; height: 380px;}
+        @media (#{$miniMobile}) { width: 95%; height: 180px; }
+        @media (#{$mobile}) { width: 90%; height: 200px; }
+        @media (#{$largeMobile}) { width: 90%; height: 270px; }
+        @media (#{$tablet}) { width: 90%; height: 310px; }
+        @media (#{$largeTablet}) { width: 90%; height: 360px; }
+        @media (#{$notebook}) { width: 90%; height: 380px; margin-top: 0; }
         
         img { width: 100%; height: 100%; object-fit: cover; }
       }
@@ -558,6 +563,7 @@ body {
 
         @media (#{$miniMobile}) { width: 100%; gap: 1rem; margin-bottom: 1rem;}
         @media (#{$mobile}), (#{$tablet}) { width: 100%; gap: 1rem; margin-bottom: 1rem;}
+        @media (#{$largeTablet}) { width: 100%; }
         @media (#{$notebook}) { width: 70%; }
 
         .zonas {
