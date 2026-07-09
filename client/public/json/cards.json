@@ -74,7 +74,7 @@
     },
     {
       "id": 2,
-      "title": "Atención a sus proyectos",
+      "title": "Aire acondicionado",
       "description": "Atención a su urgencia y respaldo a sus proyectos eléctricos.",
       "src": "/img/service/atencionP.webp",
       "alt": "Electricista trabajando en obra"
@@ -95,7 +95,7 @@
     },
     {
       "id": 5,
-      "title": "Artefactos",
+      "title": "Iluminación",
       "description": "Colocación de artefactos de iluminación. Proyectos de iluminación perimetral.",
       "src": "/img/service/artefactos.webp",
       "alt": "Instalación de luces"
@@ -104,7 +104,7 @@
       "id": 6,
       "title": "Urgencias eléctricas",
       "description": "Llegamos siempre en tiempo y forma, eficientes y pragmáticos.",
-      "src": "/img/service/urgencia.webp",
+      "src": "/img/service/fuga.webp",
       "alt": "Servicio de urgencia eléctrica"
     },
     {

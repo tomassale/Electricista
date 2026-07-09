@@ -16,10 +16,17 @@ const DURACION_GIRO = 300 // ms por cada media vuelta (debe coincidir con el CSS
 
 export default function Cards() {
   const [categoria, setCategoria] = useState<Categoria>('hogar')
+  // Categoría marcada en los botones: se actualiza al instante, sin esperar el giro
+  const [seleccion, setSeleccion] = useState<Categoria>('hogar')
   const [fase, setFase] = useState<'in' | 'out'>('in')
+  // Mientras dura el giro alivianamos el render (sin blur) para que no se trabe
+  const [girando, setGirando] = useState(false)
 
   const cambiarCategoria = (key: Categoria) => {
     if (key === categoria || fase === 'out') return
+    // El botón se resalta en blanco de inmediato
+    setSeleccion(key)
+    setGirando(true)
     // Fase 1: la card actual gira hasta 90° (queda de canto)
     setFase('out')
     setTimeout(() => {
@@ -27,6 +34,8 @@ export default function Cards() {
       setCategoria(key)
       setFase('in')
     }, DURACION_GIRO)
+    // El giro completo son dos medias vueltas
+    setTimeout(() => setGirando(false), DURACION_GIRO * 2)
   }
 
   const services = cards[categoria]
@@ -37,14 +46,14 @@ export default function Cards() {
         {categorias.map(({ key, label }) => (
           <button
             key={key}
-            className={`filtro ${categoria === key ? 'activo' : ''}`}
+            className={`filtro ${seleccion === key ? 'activo' : ''}`}
             onClick={() => cambiarCategoria(key)}
           >
             {label}
           </button>
         ))}
       </div>
-      <div className='cards'>
+      <div className={`cards ${girando ? 'girando' : ''}`}>
         {services.map((obj) => (
           <div key={obj.id} className={`card ${fase === 'out' ? 'flip-out' : 'flip-in'}`}>
             <div className='hoverClass'>
