@@ -68,6 +68,8 @@ $largeTabletLandscape: "min-width: 1113px) and (max-width: 1366px) and (orientat
 @keyframes fade-right { 0% { opacity: 0; transform: translateX(10%); } 100% { opacity: 1; transform: translateX(0); } }
 @keyframes fade-up { 0% { opacity: 0; transform: translateY(40%); } 100% { opacity: 1; transform: translateY(0); } }
 @keyframes fade-down { 0% { opacity: 0; transform: translateY(-40%); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes flip-out { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(-90deg); } }
+@keyframes flip-in { 0% { transform: rotateY(90deg); } 100% { transform: rotateY(0deg); } }
 
 // RESET & BASE
 * {
@@ -117,27 +119,53 @@ body {
     padding: 0 2%;
     box-sizing: border-box;
     border-radius: 15px;
+    overflow: visible;
 
-    @media (#{$miniMobile}) { font-size: 0.7rem; width: 98%; padding: 0 1%; }
-    @media (#{$mobile}) { font-size: 0.8rem; width: auto; }
+    @media (#{$miniMobile}) { font-size: 0.6rem; width: 98%; padding: 0 1%; }
+    @media (#{$mobile}) { font-size: 0.7rem; width: 98%; padding: 0 1.5%; }
     @media (#{$tablet}), (#{$largeTablet}) { font-size: 1.2rem }
 
     nav {
       @include flex-center;
       gap: 4rem;
       height: 7.5vh;
+      overflow: visible;
 
-      @media (#{$miniMobile}) { gap: 0.5rem; height: 8vh; }
-      @media (#{$mobile}), (#{$tablet}) { gap: 1.7rem; }
+      @media (#{$miniMobile}) { gap: 0.3rem; height: 5vh; }
+      @media (#{$mobile}) { gap: 0.7rem; height: 5.5vh; }
+      @media (#{$tablet}) { gap: 1.2rem; height: 6.5vh; }
 
       a {
         @include flex-center;
+        position: relative;
+        white-space: nowrap;
+        overflow: visible;
         font-weight: 300;
         letter-spacing: 0.5px;
+        transition: transform 0.2s ease, color 0.3s ease;
         &:hover { transform: translateY(-1px); }
-        
-        @media (#{$miniMobile}) { letter-spacing: 0; font-size: 0.8rem; }
-        @media (#{$mobile}) { letter-spacing: 0; }
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -0.4rem;
+          height: 2px;
+          width: 100%;
+          background-color: currentColor;
+          border-radius: 2px;
+          transform: scaleX(0);
+          transform-origin: center;
+          transition: transform 0.3s ease;
+        }
+
+        &.active {
+          font-weight: 500;
+          &::after { transform: scaleX(1); }
+        }
+
+        @media (#{$miniMobile}) { letter-spacing: 0; font-size: 0.6rem; &::after { bottom: -0.2rem; } }
+        @media (#{$mobile}) { letter-spacing: 0; font-size: 0.7rem; }
       }
     }
   }
@@ -339,6 +367,38 @@ body {
     height: 100vh;
     width: 100%;
     padding-top: 10vh;
+    .filtros {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2%;
+
+      // En dispositivos chicos los botones suben un poco
+      @media (#{$miniMobile}), (#{$mobile}) { margin-top: 0; }
+
+      .filtro {
+        padding: 0.5rem 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 999px;
+        background: rgba(60, 60, 60, 0.384);
+        backdrop-filter: blur(10px);
+        color: white;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+
+        &.activo {
+          background: rgba(255, 255, 255, 0.9);
+          color: #1a1a1a;
+        }
+
+        @media (#{$miniMobile}) { font-size: 0.7rem; padding: 0.4rem 1rem; }
+        @media (#{$mobile}), (#{$tablet}) { font-size: 0.75rem; padding: 0.45rem 1.1rem; }
+      }
+    }
     .cards {
       display: flex;
       flex-wrap: wrap;
@@ -348,15 +408,25 @@ body {
       justify-items: center;
       align-items: center;
       gap: 1rem;
+      perspective: 1000px;
       
       // Flex en mobile/tablet
-      @media (#{$miniMobile}), (#{$mobile}) { margin: 5% auto 0 }
+      @media (#{$miniMobile}), (#{$mobile}) {
+        margin: 3% auto 0;
+        max-height: 70vh;
+        overflow-y: auto;
+        // Espacio para que el hover (translateY + sombra) no se corte
+        padding: 1rem 1rem 0.5rem;
+      }
       @media (#{$tablet}) { margin: 10% auto 0 }
       @media (#{$notebook}) { margin: 2% auto 0 }
       @media (#{$medium}), (#{$desktop}) { width: 60% }
 
       .card {
-        @include fade(up, 0.6s);
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+        &.flip-out { animation: flip-out 0.3s ease-in forwards; }
+        &.flip-in { animation: flip-in 0.3s ease-out forwards; }
         width: 13vw;
         height: 28vh;
         border-radius: 16px;
@@ -431,90 +501,263 @@ body {
           }
         }
       }
-      @include turn(8);
     }
   }
 
-  // --- SECCION OPINIONES ---
-  .opiniones {
+  // --- SECCION PRESUPUESTOS ---
+  .presupuestos {
     @include background('/img/background/backOpi.webp');
     height: 100vh;
     width: 100%;
     padding-top: 10vh;
+    overflow: hidden;
 
-    .carousel {
+    .guia {
+      height: 85vh;
+      width: 80%;
+      margin: 0 auto;
       display: flex;
-      gap: 2rem;
-      margin-top: 5rem;
-      width: max-content;
+      flex-direction: column;
+      overflow: hidden;
 
-      @media (#{$miniMobile}) { margin-top: 2rem; gap: 1rem; }
-      @media (#{$mobile}) { margin-top: 2.8rem; }
-      @media (#{$tablet}) { margin-top: 6rem; }
-      @media (#{$notebook}), (#{$medium}) { margin-top: 2.8rem; }
+      @media (#{$miniMobile}), (#{$mobile}), (#{$tablet}) { width: 92%; }
 
-      &.carouselLeft { animation: scroll-infinite-left 40s linear infinite; }
-      &.carouselRight { animation: scroll-infinite-right 40s linear infinite; }
-
-      @media (#{$mobile}) {
-        &.carouselLeft { animation-duration: 60s; }
-        &.carouselRight { animation-duration: 60s; }
-      }
-
-      &:hover { animation-play-state: paused; }
-
-      .opinion-item {
-        max-width: 350px;
-        background: white;
-        border-radius: 16px;
-        padding: 2rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      // Cada paso arranca desde arriba, alineado igual en todos los pasos
+      .paso {
+        @include fade(up, 0.2s);
+        flex: 1;
+        min-height: 0;
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
+        gap: 1.2rem;
+        padding-top: 2vh;
+
+        @media (#{$miniMobile}), (#{$mobile}), (#{$tablet}) { gap: 0.8rem; padding-top: 1.5vh; }
+      }
+
+      .pasoTitulo {
+        color: white;
+        font-size: 1.15rem;
+        font-weight: 500;
+        text-align: center;
+        margin: 0;
+
+        @media (#{$miniMobile}) { font-size: 0.85rem; }
+        @media (#{$mobile}), (#{$tablet}) { font-size: 0.95rem; }
+      }
+
+      // Resumen de lo elegido, presente en cada paso
+      .resumenSel {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.3rem 1.2rem;
+        color: white;
+        font-size: 0.85rem;
+        text-align: center;
+
+        .resumenItem b { font-weight: 600; opacity: 0.9; }
+
+        @media (#{$miniMobile}) { font-size: 0.72rem; }
+      }
+
+      // Paso 1: secciones lado a lado, misma medida
+      .secciones {
+        display: flex;
+        justify-content: center;
         gap: 1rem;
-        color: #333;
         flex-shrink: 0;
-        position: relative;
 
-        @media (#{$miniMobile}) { width: 180px; height: 130px; padding: 1rem; }
-        @media (#{$mobile}) { width: 200px; height: 150px; }
-        @media (#{$tablet}) { width: 280px; height: 180px; }
-        @media (#{$notebook}), (#{$medium})  { width: 300px; height: 150px; }
+        @media (#{$miniMobile}), (#{$mobile}) { gap: 0.6rem; }
 
-        .opinion-text {
-          font-size: 1.1rem;
-          line-height: 1.6;
-          flex-grow: 1;
-
-          @media (#{$miniMobile}) { font-size: 0.6rem }
-          @media (#{$mobile}) { font-size: 0.8rem }
-          @media (#{$tablet}) { font-size: 1rem }
-          @media (#{$notebook}), (#{$medium}) { font-size: 0.9rem }
-        }
-
-        .opinion-person {
-          font-size: 1rem;
-          font-weight: 600;
-          color: #9b9b9b;
-          margin-top: auto;
-          
-          @media (#{$miniMobile}) { font-size: 0.6rem; }
-          @media (#{$mobile}), (#{$tablet}), (#{$notebook}), (#{$medium}) { font-size: 0.8rem; }
-        }
-
-        .opinion-rating {
-          font-size: 1.5rem;
+        .seccion {
+          flex: 1 1 0;
+          max-width: 220px;
           display: flex;
-          gap: 0.25rem;
-          @include flex-center;
-          margin-top: auto;
-          margin-bottom: 0.5rem;
+          flex-direction: column;
+          gap: 0.3rem;
+          padding: 1rem 1.1rem;
+          border-radius: 14px;
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          background: rgba(60, 60, 60, 0.384);
+          backdrop-filter: blur(10px);
+          color: white;
+          text-align: center;
+          cursor: pointer;
+          transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
 
-          @media (#{$miniMobile}) { font-size: 1rem; margin-bottom: 0; }
-          @media (#{$mobile}), (#{$tablet}), (#{$notebook}) { margin-bottom: -8%; }
+          &:hover { transform: translateY(-3px); }
+          &.activa { background: rgba(255, 255, 255, 0.9); color: #1a1a1a; }
 
-          .star-filled { color: #000; font-weight: 900; }
-          .star-empty { color: #9b9b9b; font-weight: 900; }
+          .seccionLabel { font-size: 1.05rem; font-weight: 600; }
+          .seccionDesc { font-size: 0.78rem; opacity: 0.85; }
+
+          @media (#{$miniMobile}), (#{$mobile}) {
+            padding: 0.7rem 0.5rem;
+            .seccionLabel { font-size: 0.85rem; }
+            .seccionDesc { display: none; }
+          }
+        }
+      }
+
+      // Paso 2: lista de servicios seleccionables
+      .listaServicios {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: min-content;
+        gap: 0.8rem;
+        list-style: none;
+        // Espacio para que el hover (translateY) no se corte contra el borde
+        padding: 0.5rem 6px 0.25rem;
+
+        // En dispositivos chicos la lista se achica y scrollea internamente
+        @media (#{$miniMobile}), (#{$mobile}) {
+          grid-template-columns: 1fr;
+          max-height: 45vh;
+        }
+        @media (#{$tablet}) { max-height: 55vh; }
+
+        li { display: flex; }
+
+        .servicioItem {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+          padding: 0.85rem 1.1rem;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(8px);
+          color: white;
+          text-align: left;
+          cursor: pointer;
+          transition: transform 0.2s ease, background 0.3s ease, border-color 0.3s ease;
+
+          &:hover { transform: translateY(-2px); }
+          &.seleccionado {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(255, 255, 255, 0.9);
+            color: #1a1a1a;
+          }
+
+          .servicioTitulo { font-weight: 600; font-size: 1rem; }
+          .servicioDesc { font-size: 0.8rem; opacity: 0.8; }
+
+          @media (#{$miniMobile}) {
+            padding: 0.55rem 0.8rem;
+            .servicioTitulo { font-size: 0.8rem; }
+            .servicioDesc { display: none; }
+          }
+          @media (#{$mobile}), (#{$tablet}) {
+            .servicioTitulo { font-size: 0.9rem; }
+            .servicioDesc { font-size: 0.72rem; }
+          }
+        }
+      }
+
+      // Paso 3: formulario
+      .formulario {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        width: 100%;
+        max-width: 560px;
+        margin: 0 auto;
+
+        .campo {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0.6rem 0.9rem;
+          border-radius: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(8px);
+          color: white;
+          font-size: 0.9rem;
+          font-family: inherit;
+          outline: none;
+          transition: border-color 0.3s ease, background 0.3s ease;
+
+          &::placeholder { color: rgba(255, 255, 255, 0.6); }
+          &:focus { border-color: rgba(255, 255, 255, 0.8); background: rgba(255, 255, 255, 0.12); }
+
+          @media (#{$miniMobile}) { font-size: 0.8rem; padding: 0.5rem 0.8rem; }
+        }
+
+        .campoMensaje { min-height: 10rem; resize: none; }
+
+        .contador {
+          align-self: flex-end;
+          font-size: 0.75rem;
+          color: rgba(255, 255, 255, 0.6);
+
+          @media (#{$miniMobile}) { font-size: 0.7rem; }
+        }
+      }
+
+      // Paso 4: resumen final
+      .resumenFinal {
+        width: 100%;
+        max-width: 560px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1.2rem 1.4rem;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        color: white;
+        font-size: 0.9rem;
+
+        p { margin: 0; }
+        b { font-weight: 600; }
+
+        @media (#{$miniMobile}) { font-size: 0.78rem; padding: 0.9rem 1rem; }
+      }
+
+      // Navegación entre pasos
+      .navPasos {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-shrink: 0;
+
+        // En web los botones suben un poco desde el fondo
+        @media (#{$notebook}), (#{$medium}), (#{$desktop}) { margin-bottom: 4vh; }
+
+        button {
+          padding: 0.55rem 1.8rem;
+          border-radius: 999px;
+          font-size: 0.9rem;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          cursor: pointer;
+          transition: transform 0.2s ease, background 0.3s ease, opacity 0.3s ease;
+
+          &:hover:not(:disabled) { transform: translateY(-2px); }
+          &:disabled { opacity: 0.5; cursor: not-allowed; }
+
+          @media (#{$miniMobile}) { font-size: 0.78rem; padding: 0.5rem 1.4rem; }
+        }
+
+        .btnVolver {
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          background: rgba(60, 60, 60, 0.384);
+          backdrop-filter: blur(10px);
+          color: white;
+        }
+
+        .btnSiguiente, .botonConsultar {
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          background: rgba(255, 255, 255, 0.9);
+          color: #1a1a1a;
         }
       }
     }
