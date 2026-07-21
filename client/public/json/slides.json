@@ -8,10 +8,10 @@
   },
   {
     "id": 1,
-    "title": "Opiniones de clientes",
-    "text": "Excelencia técnica avalada por clientes: destacan la precisión y la lógica aplicada en cada reparación. Trabajo prolijo, puntual y resolutivo. Descubrí por qué confían en nuestro criterio profesional.",
-    "button": "Ver Opiniones",
-    "link": "/opiniones"
+    "title": "Presupuestos sin cargo",
+    "text": "Armá tu presupuesto eléctrico detallado y sin compromiso. Elegí el rubro, seleccioná los servicios y recibí una cotización clara paso a paso. Transparencia y precisión desde el primer contacto.",
+    "button": "Ver Presupuestos",
+    "link": "/presupuestos"
   },
   {
     "id": 2,
@@ -23,8 +23,8 @@
   {
     "id": 3,
     "title": "Electricista Matriculado",
-    "text": "Electricista Matriculado con visión técnica avanzada. Combinando experiencia técnica en obra con una capacidad de resolución de problemas, garantizando resultados impecables en cada conexión.",
-    "button": "Llamar",
-    "link": "tel:+541159638765"
+    "text": "Electricista matriculado con visión técnica avanzada. Combinamos experiencia en obra con capacidad de resolución de problemas, garantizando resultados impecables en cada conexión. Conocé cómo trabajamos.",
+    "button": "Conocenos",
+    "link": "/nosotros"
   }
 ]

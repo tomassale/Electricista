@@ -1,17 +1,11 @@
-"use client"
-import dynamic from 'next/dynamic'
+import MapComponent from './leftComponent/MapComponent'
 import InfoContainer from './rightComponent/infoContainer'
-
-const MapComponent = dynamic(() => import('@/app/(auth)/cobertura/leftComponent/MapComponent'), {
-  ssr:false,
-  loading: () => <p>Cargando mapa...</p>
-})
 
 export default function Cobertura() {
   return (
     <div className='cobertura'>
       <h1>Cobertura</h1>
-      <div className="main"> 
+      <div className="main">
         <MapComponent/>
         <InfoContainer/>
       </div>

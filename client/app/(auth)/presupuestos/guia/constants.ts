@@ -1,5 +1,3 @@
-export const WHATSAPP = '541159098126'
-
 export const secciones = [
   { key: 'hogar', label: 'Hogar', desc: 'Instalaciones y reparaciones en tu casa' },
   { key: 'comercio', label: 'Comercio', desc: 'Servicios eléctricos para tu comercio' },

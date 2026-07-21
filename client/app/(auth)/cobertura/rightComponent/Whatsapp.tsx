@@ -1,8 +1,10 @@
+import { urlWhatsapp } from '@/app/_lib/contact'
+
 export default function Whatsapp() {
   return (
-    <a 
-        href='https://wa.me/541159098126' 
-        target="_blank" 
+    <a
+        href={urlWhatsapp()}
+        target="_blank"
         rel="noopener noreferrer"
       >
       <button className='botonMensaje'>

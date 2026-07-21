@@ -373,6 +373,147 @@ body {
     }
   }
 
+  // --- SECCION SOBRE NOSOTROS (pagina /nosotros) ---
+  .sobreNosotros {
+    @include background('/img/background/backNos.webp');
+    box-sizing: border-box;
+    // Altura FIJA sin scroll, igual que el resto de las secciones. El contenido se
+    // ajusta con los media queries para entrar en el viewport. border-box para que
+    // el padding no sume alto extra.
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    padding: 10vh 0 2rem;
+    color: white;
+    overflow: hidden;
+
+    // En landscape la altura es baja: header mas chico, menos padding arriba
+    @media (#{$mobileLandscape}), (#{$largeMobileLandscape}) { padding-top: 7vh; }
+    @media (#{$tabletLandscape}), (#{$largeTabletLandscape}) { padding-top: 12vh; }
+
+    .contenido {
+      width: 70%;
+      max-width: 1100px;
+      margin: 2% auto 4rem;
+
+      @media (#{$miniMobile}), (#{$mobile}) { width: 90%; margin-top: 4%; }
+      @media (#{$tablet}), (#{$largeTablet}) { width: 85%; }
+      @media (#{$mobileLandscape}), (#{$largeMobileLandscape}) { width: 92%; margin: 1% auto 2rem; }
+      @media (#{$tabletLandscape}), (#{$largeTabletLandscape}) { width: 85%; }
+    }
+
+    .intro {
+      @include fade(up, 0.2s);
+      font-size: 1.6rem;
+      line-height: 1.6;
+      text-align: justify;
+      margin-bottom: 3rem;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+
+      strong { color: #FFD700; }
+
+      @media (#{$miniMobile}) { font-size: 1rem; margin-bottom: 1.5rem; }
+      @media (#{$mobile}) { font-size: 1.05rem; margin-bottom: 2rem; }
+      @media (#{$tablet}), (#{$largeTablet}), (#{$notebook}) { font-size: 1.3rem; }
+      @media (#{$mobileLandscape}), (#{$largeMobileLandscape}) { font-size: 1rem; line-height: 1.4; margin-bottom: 1.2rem; }
+      @media (#{$tabletLandscape}), (#{$largeTabletLandscape}) { font-size: 1.3rem; margin-bottom: 2rem; }
+    }
+
+    .valores {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      @include fade(up, 0.5s);
+
+      @media (#{$miniMobile}), (#{$mobile}) { grid-template-columns: 1fr; gap: 1rem; }
+      // En landscape hay ancho de sobra: mantenemos 2 columnas y compactamos
+      @media (#{$mobileLandscape}), (#{$largeMobileLandscape}) { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-bottom: 1.5rem; }
+      @media (#{$tabletLandscape}), (#{$largeTabletLandscape}) { gap: 1.5rem; margin-bottom: 2.5rem; }
+
+      .valor {
+        background: rgba(30, 30, 30, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 14px;
+        padding: 1.5rem 1.75rem;
+        transition: border-color 0.25s ease;
+
+        // Dispositivos chicos: cards mas compactas
+        @media (#{$miniMobile}) { padding: 0.7rem 0.9rem; border-radius: 10px; }
+        @media (#{$mobile}) { padding: 0.9rem 1.1rem; border-radius: 12px; }
+        @media (#{$mobileLandscape}), (#{$largeMobileLandscape}) { padding: 0.9rem 1.1rem; border-radius: 10px; }
+
+        &:hover {
+          border-color: #FFD700;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #FFD700;
+          margin-bottom: 0.6rem;
+
+          @media (#{$miniMobile}) { font-size: 1.05rem; margin-bottom: 0.3rem; }
+          @media (#{$mobile}) { font-size: 1.2rem; margin-bottom: 0.4rem; }
+          @media (#{$mobileLandscape}), (#{$largeMobileLandscape}) { font-size: 1.1rem; margin-bottom: 0.35rem; }
+        }
+
+        p {
+          font-size: 1.1rem;
+          line-height: 1.5;
+
+          @media (#{$miniMobile}) { font-size: 0.8rem; line-height: 1.3; }
+          @media (#{$mobile}) { font-size: 0.9rem; line-height: 1.4; }
+          @media (#{$mobileLandscape}), (#{$largeMobileLandscape}) { font-size: 0.85rem; line-height: 1.35; }
+        }
+      }
+    }
+
+    .botones {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      @include fade(up, 0.9s);
+
+      @media (#{$miniMobile}), (#{$mobile}) { gap: 1rem; }
+      // En landscape la altura es baja: ocultamos los botones (el boton flotante de
+      // Emergencia ya ofrece Whatsapp y llamada)
+      @media (#{$mobileLandscape}), (#{$largeMobileLandscape}), (#{$tabletLandscape}), (#{$largeTabletLandscape}) {
+        display: none;
+      }
+      // Cubre tablets en landscape que caen fuera de los breakpoints fijos
+      // (ej: iPad Air ~1180x820, iPad Pro 11" ~1194x834)
+      @media (min-width: 768px) and (max-width: 1366px) and (orientation: landscape) and (max-height: 950px) {
+        display: none;
+      }
+
+      a {
+        @include flex-center;
+        height: 4rem;
+        width: 14rem;
+        border-radius: 5px;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: white;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0px 2px 2px #000;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: filter 0.25s ease, box-shadow 0.25s ease;
+
+        &:hover {
+          filter: brightness(1.15);
+          box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (#{$miniMobile}) { width: 45%; height: 3rem; font-size: 1.1rem; }
+        @media (#{$mobile}) { width: 45%; height: 3.2rem; font-size: 1.3rem; }
+        @media (#{$tablet}), (#{$largeTablet}), (#{$notebook}) { width: 12rem; height: 3.5rem; font-size: 1.4rem; }
+        @media (#{$mobileLandscape}), (#{$largeMobileLandscape}) { width: 30%; height: 2.8rem; font-size: 1.1rem; }
+        @media (#{$tabletLandscape}), (#{$largeTabletLandscape}) { width: 12rem; height: 3.5rem; font-size: 1.4rem; }
+      }
+    }
+  }
+
   // --- SECCION SERVICIOS ---
   .servicios {
     @include background('/img/background/backSer.webp');
@@ -484,13 +625,20 @@ body {
           @include flex-center;
           background: rgba(60, 60, 60, 0.384);
           backdrop-filter: blur(10px);
-          z-index: 2; 
-          mask-image: radial-gradient(circle, black 100%);
+          z-index: 2;
           color: white;
           font-size: 1rem;
           font-weight: 500;
           letter-spacing: 0.5px;
           text-align: center;
+
+          // Celular y tablet: sin backdrop-filter (fondo sólido) para que el título
+          // se pinte junto con la card durante el giro 3D y no aparezca después.
+          @media (#{$miniMobile}), (#{$mobile}), (#{$tablet}), (#{$largeTablet}) {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            background: rgba(35, 35, 35, 0.72);
+          }
 
           @media (#{$miniMobile}) { font-size: 0.6rem; height: 30%; width: 90%; }
           @media (#{$mobile}), (#{$tablet}), (#{$largeTablet}), (#{$notebook}) { font-size: .65rem; height: 25%; justify-content: center; }
@@ -573,13 +721,13 @@ body {
         justify-content: center;
         gap: 0.3rem 1.2rem;
         color: white;
-        font-size: 0.85rem;
+        font-size: 1.05rem;
         text-align: center;
 
         .resumenItem b { font-weight: 600; opacity: 0.9; }
 
-        @media (#{$miniMobile}) { font-size: 0.72rem; }
-        @media (#{$medium}), (#{$desktop}) { font-size: 1.05rem; }
+        @media (#{$miniMobile}) { font-size: 0.9rem; }
+        @media (#{$medium}), (#{$desktop}) { font-size: 1.25rem; }
       }
 
       // Paso 1: secciones lado a lado, misma medida
@@ -611,13 +759,18 @@ body {
           &:hover { filter: brightness(1.15); border-color: rgba(255, 255, 255, 0.75); }
           &.activa { background: rgba(255, 255, 255, 0.9); color: #1a1a1a; }
 
-          .seccionLabel { font-size: 1.05rem; font-weight: 600; }
+          .seccionLabel { font-size: 1.05rem; font-weight: 600; margin-inline: auto; }
           .seccionDesc { font-size: 0.78rem; opacity: 0.85; }
 
           @media (#{$miniMobile}), (#{$mobile}) {
             padding: 0.7rem 0.5rem;
             .seccionLabel { font-size: 0.85rem; }
             .seccionDesc { display: none; }
+          }
+          @media (#{$tablet}), (#{$largeTablet}), (#{$tabletLandscape}), (#{$largeTabletLandscape}) {
+            padding: 0.7rem 0.5rem;
+            .seccionLabel { font-size: 1.15rem; }
+            .seccionDesc {font-size: 0.92rem; }
           }
           @media (#{$medium}), (#{$desktop}) {
             .seccionLabel { font-size: 1.25rem; }
@@ -677,7 +830,7 @@ body {
             .servicioTitulo { font-size: 0.8rem; }
             .servicioDesc { display: none; }
           }
-          @media (#{$mobile}), (#{$tablet}) {
+          @media (#{$mobile}), (#{$tablet}), (#{$largeTablet}) {
             .servicioTitulo { font-size: 0.9rem; }
             .servicioDesc { font-size: 0.72rem; }
           }
@@ -818,6 +971,8 @@ body {
       .map {
         width: 50%;
         margin-top: 1rem;
+        box-sizing: border-box;
+        padding: 0.5rem; // espacio para que el mapa no toque el borde
         @include fade(left, 0.3s);
         @media (#{$miniMobile}) { width: 95%; height: 180px; }
         @media (#{$mobile}) { width: 90%; height: 200px; }
@@ -825,8 +980,9 @@ body {
         @media (#{$tablet}) { width: 90%; height: 310px; }
         @media (#{$largeTablet}) { width: 90%; height: 360px; }
         @media (#{$notebook}) { width: 90%; height: 380px; margin-top: 0; }
-        
-        img { width: 100%; height: 100%; object-fit: cover; }
+
+        // contain (no cover) para que el mapa se vea completo sin recortarse
+        img { width: 100%; height: 100%; object-fit: contain; }
       }
 
       // --- NUEVO WRAPPER (Lista + Botón) ---

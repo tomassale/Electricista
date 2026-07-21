@@ -54,10 +54,16 @@ export default function Cards() {
         ))}
       </div>
       <div className={`cards ${girando ? 'girando' : ''}`}>
-        {services.map((obj) => (
+        {services.map((obj, i) => (
           <div key={obj.id} className={`card ${fase === 'out' ? 'flip-out' : 'flip-in'}`}>
             <div className='hoverClass'>
-              <Image src={obj.src} alt={obj.alt} fill priority/>
+              <Image
+                src={obj.src}
+                alt={obj.alt}
+                fill
+                sizes='(max-width: 767px) 25vw, (max-width: 1024px) 20vw, 14vw'
+                priority={i < 4}
+              />
               <p className='descripcion'>{obj.description}</p>
             </div>
             <div className='title'>

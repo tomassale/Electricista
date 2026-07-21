@@ -23,7 +23,7 @@
     },
     {
       "id": 3,
-      "title": "Mantenimiento de llave inversora (opcional)",
+      "title": "Mantenimiento de llave inversora",
       "description": "Mantenimiento y puesta a punto de llave inversora.",
       "src": "/img/service/medicionE.webp",
       "alt": "Llave inversora"
@@ -37,7 +37,7 @@
     },
     {
       "id": 5,
-      "title": "Mantenimiento eléctrico comercial general",
+      "title": "Mantenimiento eléctrico comercial",
       "description": "Mantenimiento eléctrico integral para comercios.",
       "src": "/img/service/artefactos.webp",
       "alt": "Mantenimiento eléctrico comercial"

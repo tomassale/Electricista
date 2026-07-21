@@ -1,4 +1,5 @@
-import { WHATSAPP, type SeccionActiva } from './constants'
+import { urlWhatsapp } from '@/app/_lib/contact'
+import type { SeccionActiva } from './constants'
 
 // Une los items en lenguaje natural: "A, B y C"
 const unirNatural = (items: string[]) =>
@@ -24,5 +25,5 @@ export function construirUrlWhatsapp({ nombre, seccion, seleccionados, mensaje }
   }
 
   const lineas = [saludo, '', mensaje.trim(), '', '¡Muchas gracias!']
-  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(lineas.join('\n'))}`
+  return urlWhatsapp(lineas.join('\n'))
 }
